@@ -17,32 +17,44 @@ export default function ClassTypesShowcaseSection() {
       type: "Mental Health/First Aid",
       description:
         "Learn how to handle mental health crises and provide first aid.",
+      information:
+        "This course covers the basics of mental health first aid, including how to recognize and respond to mental health crises. Classes typically run about 8 hours and may be in person or remote.",
     },
     {
       slug: "armed-security",
       type: "Armed Security",
       description: "Learn the skills necessary to work in armed security.",
+      information:
+        "This course provides an overview of the skills and knowledge required for a career in armed security. Classes typically run about 8 hours and must be in person at a shooting range.",
     },
     {
       slug: "unarmed-security",
       type: "Unarmed Security",
       description: "Learn the skills necessary to work in unarmed security.",
+      information:
+        "This course provides an overview of the skills and knowledge required for a career in unarmed security. Classes typically run about 8 hours and may be in person or remote.",
     },
     {
       slug: "armed-security-refresher",
       type: "Armed Security Refresher",
       description: "Refresh your knowledge and skills in armed security.",
+      information:
+        "This course is designed for individuals who have previously completed an armed security training program and need to refresh their knowledge and skills. Classes typically run about 4 hours and must be in person at a shooting range.",
     },
     {
       slug: "unarmed-security-refresher",
       type: "Unarmed Security Refresher",
       description: "Refresh your knowledge and skills in unarmed security.",
+      information:
+        "This course is designed for individuals who have previously completed an unarmed security training program and need to refresh their knowledge and skills. Classes typically run about 4 hours and may be in person or remote.",
     },
     {
       slug: "asp",
       type: "ASP",
       description:
         "Learn about the ASP (Advanced Security Professional) certification.",
+      information:
+        "This course provides an overview of the skills and knowledge required for the ASP certification. Classes typically run about 8 hours and may be in person or remote.",
     },
   ];
   return (
@@ -58,11 +70,16 @@ export default function ClassTypesShowcaseSection() {
         </TabsList>
         {classTypes.map((classType) => (
           <TabsContent key={classType.slug} value={classType.slug}>
-            <Card className="text-center">
-              <CardHeader>
+            <Card className="text-center space-y-4">
+              <CardHeader className="space-y-2">
                 <CardTitle>{classType.type}</CardTitle>
+                {classType.description && (
+                  <CardDescription>{classType.description}</CardDescription>
+                )}
               </CardHeader>
-              <CardContent>{classType.description}</CardContent>
+              <CardContent className="px-12">
+                <p className="text-lg">{classType.information}</p>
+              </CardContent>
               <CardFooter className="justify-center">
                 <Button size={"lg"}>Sign Up</Button>
               </CardFooter>
