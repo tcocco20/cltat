@@ -12,45 +12,63 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function ClassTypesShowcaseSection() {
   const classTypes = [
-    "Mental Health/First Aid",
-  ]
+    {
+      slug: "mental-health-first-aid",
+      type: "Mental Health/First Aid",
+      description:
+        "Learn how to handle mental health crises and provide first aid.",
+    },
+    {
+      slug: "armed-security",
+      type: "Armed Security",
+      description: "Learn the skills necessary to work in armed security.",
+    },
+    {
+      slug: "unarmed-security",
+      type: "Unarmed Security",
+      description: "Learn the skills necessary to work in unarmed security.",
+    },
+    {
+      slug: "armed-security-refresher",
+      type: "Armed Security Refresher",
+      description: "Refresh your knowledge and skills in armed security.",
+    },
+    {
+      slug: "unarmed-security-refresher",
+      type: "Unarmed Security Refresher",
+      description: "Refresh your knowledge and skills in unarmed security.",
+    },
+    {
+      slug: "asp",
+      type: "ASP",
+      description:
+        "Learn about the ASP (Advanced Security Professional) certification.",
+    },
+  ];
   return (
-    <div className="flex mx-auto w-full max-w-xl flex-col gap-6">
-      <Tabs defaultValue="account">
+    <div className="flex mx-auto w-full max-w-xl flex-col gap-4 items-center">
+      <h2 className="text-2xl font-bold my-4">Class Types</h2>
+      <Tabs defaultValue="mental-health-first-aid">
         <TabsList>
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="password">Password</TabsTrigger>
+          {classTypes.map((classType) => (
+            <TabsTrigger key={classType.slug} value={classType.slug}>
+              {classType.type}
+            </TabsTrigger>
+          ))}
         </TabsList>
-        <TabsContent value="account">
-          <Card>
-            <CardHeader>
-              <CardTitle>Account</CardTitle>
-              <CardDescription>
-                Make changes to your account here. Click save when you&apos;re
-                done.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">Account Content</CardContent>
-            <CardFooter>
-              <Button>Save changes</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        <TabsContent value="password">
-          <Card>
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>
-                Change your password here. After saving, you&apos;ll be logged
-                out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">Password Content</CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
+        {classTypes.map((classType) => (
+          <TabsContent key={classType.slug} value={classType.slug}>
+            <Card className="text-center">
+              <CardHeader>
+                <CardTitle>{classType.type}</CardTitle>
+              </CardHeader>
+              <CardContent>{classType.description}</CardContent>
+              <CardFooter className="justify-center">
+                <Button size={"lg"}>Sign Up</Button>
+              </CardFooter>
+            </Card>
+          </TabsContent>
+        ))}
       </Tabs>
     </div>
   );
