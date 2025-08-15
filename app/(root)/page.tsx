@@ -4,10 +4,10 @@ import InstructorInfoSection from "@/components/home/instructor-info-section";
 
 export default function Home() {
   return (
-    <main className="w-full">
+    <>
       <HeroSection />
       <ClassTypesShowcaseSection />
       <InstructorInfoSection />
-    </main>
+    </>
   );
 }
