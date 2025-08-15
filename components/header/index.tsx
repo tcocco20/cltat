@@ -9,36 +9,47 @@ import {
   // NavigationMenuTrigger, These are for dropdown menus
 } from "../ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import MobileNavMenu from "./MobileNavMenu";
+import { LinkData } from "@/lib/types";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const scrollPosition = useScrollPosition();
+  const pathname = usePathname();
 
   const menuItems = [
-    { title: "Home", link: "#" },
-    { title: "Sign Up", link: "#" },
-    { title: "Contact Us", link: "#" },
-    { title: "About Us", link: "#" },
-  ];
+    { title: "Home", href: "/" },
+    { title: "Sign Up", href: "/signup" },
+    { title: "Contact Us", href: "/contact" },
+    { title: "About Us", href: "/about" },
+  ] as LinkData[];
 
   return (
     <header
       className={cn(
-        "sticky top-0 bg-foreground/60 text-background p-2 md:p-4 flex items-center justify-start gap-12 backdrop-blur-md hover:bg-foreground/80 transition-all duration-300 z-50",
+        "sticky top-0 bg-foreground/60 text-background p-2 md:p-4 flex items-center justify-between md:justify-start gap-12 backdrop-blur-sm hover:bg-foreground/85 transition-all duration-300 z-50",
         scrollPosition === 0 ? "bg-foreground/85" : ""
       )}
     >
-      <h1 className="text-2xl font-bold">Cornerstone Legacy</h1>
-      <NavigationMenu>
+      <h1 className="text-xl md:text-2xl font-bold">Cornerstone Legacy</h1>
+      <NavigationMenu className="hidden md:flex">
         <NavigationMenuList>
           {menuItems.map((item) => (
             <NavigationMenuItem key={item.title}>
-              <NavigationMenuLink href={item.link} className="text-base">
+              <NavigationMenuLink
+                href={item.href}
+                className={cn("text-base", {
+                  "font-bold bg-white text-foreground hover:opacity-80": pathname === item.href,
+                })}
+                active={pathname === item.href}
+              >
                 {item.title}
               </NavigationMenuLink>
             </NavigationMenuItem>
           ))}
         </NavigationMenuList>
       </NavigationMenu>
+      <MobileNavMenu links={menuItems} />
     </header>
   );
 };

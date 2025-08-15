@@ -11,12 +11,12 @@ const HeroSection = () => {
         width={1472}
         height={832}
       />
-      <h2 className="text-xl font-medium">
+      <h2 className="text-xl font-medium px-2 md:px-0">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, odit!
       </h2>
-      <div className="flex items-center justify-center gap-4">
-        <Button>Sign Up for Class</Button>
-        <Button>Request More Information</Button>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+        <Button className="w-full md:w-auto">Sign Up for Class</Button>
+        <Button className="w-full md:w-auto">Request More Information</Button>
       </div>
     </section>
   );

@@ -14,7 +14,7 @@ export default function ClassTypesShowcaseSection() {
   const classTypes = [
     {
       slug: "mental-health-first-aid",
-      type: "Mental Health/First Aid",
+      type: "Mental Health and First Aid",
       description:
         "Learn how to handle mental health crises and provide first aid.",
       information:
@@ -58,20 +58,23 @@ export default function ClassTypesShowcaseSection() {
     },
   ];
   return (
-    <div className="flex mx-auto w-full max-w-xl flex-col gap-4 items-center">
-      <h2 className="text-2xl font-bold my-4">Class Types</h2>
-      <Tabs defaultValue="mental-health-first-aid">
-        <TabsList>
+    <section className="flex mx-auto w-full max-w-3xl flex-col gap-4 items-center px-2 md:px-0">
+      <h2 className="text-2xl font-bold my-4 self-start">Class Types</h2>
+      <Tabs defaultValue="mental-health-first-aid" className="w-full">
+        <TabsList className="w-full overflow-x-scroll no-scrollbar justify-start">
           {classTypes.map((classType) => (
             <TabsTrigger key={classType.slug} value={classType.slug}>
               {classType.type}
             </TabsTrigger>
           ))}
         </TabsList>
+        <p className="text-foreground/80 text-sm mb-4">
+          Scroll to see more options
+        </p>
         {classTypes.map((classType) => (
           <TabsContent key={classType.slug} value={classType.slug}>
-            <Card className="text-center space-y-4">
-              <CardHeader className="space-y-2">
+            <Card className="text-center md:space-y-4">
+              <CardHeader className="md:space-y-2">
                 <CardTitle>{classType.type}</CardTitle>
                 {classType.description && (
                   <CardDescription>{classType.description}</CardDescription>
@@ -87,6 +90,6 @@ export default function ClassTypesShowcaseSection() {
           </TabsContent>
         ))}
       </Tabs>
-    </div>
+    </section>
   );
 }
