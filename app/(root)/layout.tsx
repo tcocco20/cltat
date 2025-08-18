@@ -9,7 +9,9 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <main className="flex flex-col gap-8">{children}</main>
+      <main className="flex flex-col gap-8 min-h-[calc(100vh-4rem)]">
+        {children}
+      </main>
       <Footer />
     </>
   );
