@@ -3,11 +3,11 @@ import { Button } from "../ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="container mx-auto flex flex-col items-center gap-8">
+    <section className="mx-auto flex flex-col items-center gap-8">
       <Image
         src="/images/hero-image.jpeg"
         alt="Hero Image"
-        className="w-full max-w-4xl mx-auto"
+        className="w-full mx-auto"
         width={1472}
         height={832}
       />

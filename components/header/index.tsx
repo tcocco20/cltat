@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 bg-foreground/60 text-background p-2 md:p-4 flex items-center justify-between md:justify-start gap-12 backdrop-blur-sm hover:bg-foreground/85 transition-all duration-300 z-50",
+        "fixed top-0 w-full bg-foreground/60 text-background p-2 md:p-4 flex items-center justify-between md:justify-start gap-12 backdrop-blur-sm hover:bg-foreground/85 transition-all duration-300 z-50",
         scrollPosition === 0 ? "bg-foreground/85" : ""
       )}
     >
@@ -39,7 +39,8 @@ const Header = () => {
               <NavigationMenuLink
                 href={item.href}
                 className={cn("text-base", {
-                  "font-bold bg-white text-foreground hover:opacity-80": pathname === item.href,
+                  "font-bold bg-white text-foreground hover:opacity-80":
+                    pathname === item.href,
                 })}
                 active={pathname === item.href}
               >

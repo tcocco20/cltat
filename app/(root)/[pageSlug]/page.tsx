@@ -22,7 +22,7 @@ const GenericPage = async (props: {
 
   return (
     <>
-      <header className="relative flex items-center justify-center w-full h-[200px]">
+      <header className="relative flex items-center justify-center w-full h-[250px]">
         <Image
           src={imageURL}
           alt="Banner Image"
@@ -30,8 +30,8 @@ const GenericPage = async (props: {
           width={page.bannerImage?.width}
           height={page.bannerImage?.height}
         />
-        <div className="absolute inset-0 bg-black/70" />
-        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold z-50 text-white relative">
+        <div className="absolute inset-0 bg-black/70 z-10" />
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold z-20 text-white relative">
           {page.title}
         </h1>
       </header>
