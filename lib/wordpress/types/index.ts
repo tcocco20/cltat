@@ -9,15 +9,11 @@ export type WordPressBlock = {
 };
 
 export interface WordPressImage {
-  altText: string;
+  altText: string | null;
   mediaItemUrl: string;
   mediaDetails: {
-    sizes: {
-      sourceUrl: string;
-      name: string;
-      width: number;
-      height: number;
-    }[];
+    height: number;
+    width: number;
   };
 }
 
