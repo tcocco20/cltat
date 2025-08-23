@@ -23,7 +23,7 @@ const Header = () => {
   useEffect(() => {
     const fallbackMenuItems = [
       { title: "Home", href: "/" },
-      { title: "Sign Up", href: "/signup" },
+      { title: "Sign Up", href: "/sign-up" },
     ] as Menu;
     const fetchMenuItems = async () => {
       const response = await getMenu("main-nav");

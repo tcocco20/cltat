@@ -46,7 +46,7 @@ export const reshapeBlocks = (blocks: WordPressBlock[]) => {
 };
 
 export const reshapeMenu = (menu: MenuResponse): Menu | null => {
-  if (!menu) return null;
+  if (!menu || !menu.menuItems) return null;
 
   const reshapedMenu = removeEdgesAndNodes(menu.menuItems);
 
