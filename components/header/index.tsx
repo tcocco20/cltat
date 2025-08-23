@@ -10,19 +10,29 @@ import {
 } from "../ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import MobileNavMenu from "./MobileNavMenu";
-import { LinkData } from "@/lib/types";
+import { Menu } from "@/lib/types";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { getMenu } from "@/lib/actions/wordpress.actions";
 
 const Header = () => {
+  const [menuItems, setMenuItems] = useState<Menu>([]);
   const scrollPosition = useScrollPosition();
   const pathname = usePathname();
 
-  const menuItems = [
-    { title: "Home", href: "/" },
-    { title: "Sign Up", href: "/signup" },
-    { title: "Contact Us", href: "/contact" },
-    { title: "About Us", href: "/about" },
-  ] as LinkData[];
+  useEffect(() => {
+    const fallbackMenuItems = [
+      { title: "Home", href: "/" },
+      { title: "Sign Up", href: "/signup" },
+    ] as Menu;
+    const fetchMenuItems = async () => {
+      const response = await getMenu("main-nav");
+      const data = response ?? fallbackMenuItems;
+      setMenuItems(data);
+    };
+
+    fetchMenuItems();
+  }, []);
 
   return (
     <header

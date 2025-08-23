@@ -22,3 +22,5 @@ export interface WPImage {
   height: number;
   width: number;
 }
+
+export type Menu = LinkData[];

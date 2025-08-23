@@ -1,4 +1,5 @@
 import { imageFragment } from "./fragments";
+
 export const singlePageQuery = /* GraphQL */ `
   query GetSinglePage($slug: ID!) {
     page(id: $slug, idType: URI) {
@@ -12,4 +13,19 @@ export const singlePageQuery = /* GraphQL */ `
     }
   }
   ${imageFragment}
+`;
+
+export const singleMenuQuery = /* GraphQL */ `
+  query NewQuery($slug: ID!) {
+    menu(id: $slug, idType: SLUG) {
+      menuItems {
+        edges {
+          node {
+            path
+            label
+          }
+        }
+      }
+    }
+  }
 `;

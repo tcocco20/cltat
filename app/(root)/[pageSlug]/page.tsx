@@ -27,15 +27,15 @@ const GenericPage = async (props: {
           src={imageURL}
           alt="Banner Image"
           className="absolute inset-0 object-cover object-center z-0 w-full h-full"
-          width={page.bannerImage?.width}
-          height={page.bannerImage?.height}
+          width={page.bannerImage?.width || 1920}
+          height={page.bannerImage?.height || 1080}
         />
         <div className="absolute inset-0 bg-black/70 z-10" />
         <h1 className="text-xl md:text-2xl lg:text-3xl font-bold z-20 text-white relative">
           {page.title}
         </h1>
       </header>
-      <section className="container mx-auto px-4">
+      <section className="container mx-auto px-4 space-y-4">
         <BlockRenderer blocks={page.blocks} />
       </section>
     </>

@@ -1,11 +1,12 @@
 import { randomUUID } from "crypto";
-import { BlockData, PageData, WPImage } from "../types";
+import { BlockData, Menu, PageData, WPImage } from "../types";
 import {
   Connection,
   PageResponse,
   WordPressBlock,
   WordPressImage,
 } from "./types";
+import { MenuResponse } from "./types/response-types";
 
 export function removeEdgesAndNodes<T>(array: Connection<T>): T[] {
   return array.edges.map((edge) => edge?.node);
@@ -42,4 +43,15 @@ export const reshapeBlocks = (blocks: WordPressBlock[]) => {
   };
 
   return assignIds(blocks);
+};
+
+export const reshapeMenu = (menu: MenuResponse): Menu | null => {
+  if (!menu) return null;
+
+  const reshapedMenu = removeEdgesAndNodes(menu.menuItems);
+
+  return reshapedMenu.map((item) => ({
+    title: item.label,
+    href: item.path,
+  }));
 };
