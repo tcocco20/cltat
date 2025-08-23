@@ -1,4 +1,8 @@
-import { WordPressBlock, WordPressImage } from "@/lib/wordpress/types";
+import {
+  Connection,
+  WordPressBlock,
+  WordPressImage,
+} from "@/lib/wordpress/types";
 
 export interface PageResponse {
   blocks: WordPressBlock[];
@@ -6,4 +10,10 @@ export interface PageResponse {
   pageBanner: {
     pageBanner: WordPressImage | null;
   };
+}
+export interface MenuResponse {
+  menuItems: Connection<{
+    path: string;
+    label: string;
+  }>;
 }
