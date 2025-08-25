@@ -24,3 +24,13 @@ export interface WPImage {
 }
 
 export type Menu = LinkData[];
+
+export interface ClassData {
+  id: string;
+  description: string;
+  date: Date;
+  isRemote: boolean;
+  location: string | null;
+  spotsAvailable: number;
+  type: string;
+}
