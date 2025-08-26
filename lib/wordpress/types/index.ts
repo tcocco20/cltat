@@ -17,4 +17,8 @@ export interface WordPressImage {
   };
 }
 
+export interface WordPressClass {
+  id: string;
+}
+
 export type { Connection, ExtractVariables, PageRequest, PageResponse };

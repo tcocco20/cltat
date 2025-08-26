@@ -37,7 +37,7 @@ const ClassTypeSection = ({
   );
   return (
     <AccordionItem value={classType}>
-      <AccordionTrigger>{`Class Type ${classType}`}</AccordionTrigger>
+      <AccordionTrigger>{classType}</AccordionTrigger>
       <AccordionContent className="space-y-2 overflow-y-auto max-h-[300px]">
         {classes?.length
           ? classes.map((classData) => (

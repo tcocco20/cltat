@@ -1,9 +1,10 @@
 import { randomUUID } from "crypto";
-import { BlockData, Menu, PageData, WPImage } from "../types";
+import { BlockData, ClassData, Menu, PageData, WPImage } from "../types";
 import {
   Connection,
   PageResponse,
   WordPressBlock,
+  WordPressClass,
   WordPressImage,
 } from "./types";
 import { MenuResponse } from "./types/response-types";
@@ -54,4 +55,11 @@ export const reshapeMenu = (menu: MenuResponse): Menu | null => {
     title: item.label,
     href: item.path,
   }));
+};
+
+export const reshapeClass = () => {};
+
+export const reshapeClasses = (classes: WordPressClass[]): ClassData[] => {
+  console.log("RESHAPING CLASSES", classes);
+  return [];
 };

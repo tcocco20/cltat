@@ -8,12 +8,19 @@ import {
 } from "../ui/card";
 import { Accordion } from "../ui/accordion";
 import ClassTypeSection from "./class-type-section";
+import { ClassData } from "@/lib/types";
 
 interface ClassesDisplayProps {
+  classTypes: string[];
+  classes: ClassData[];
   onSelectClass: (classId: string) => void;
 }
 
-const ClassesDisplay = ({ onSelectClass }: ClassesDisplayProps) => {
+const ClassesDisplay = ({
+  classTypes,
+  classes,
+  onSelectClass,
+}: ClassesDisplayProps) => {
   return (
     <Card>
       <CardHeader>
