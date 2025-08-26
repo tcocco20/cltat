@@ -19,6 +19,11 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
       </p>
     </div>
   );
+
+  const handleSignUp = () => {
+    // Set cookie with class ID so when user returns, the correct class is selected
+    document.cookie = `selectedClassId=${selectedClass!.id}; path=/`;
+  };
   return (
     <Card className="h-full flex flex-col justify-center">
       <CardContent>
@@ -37,6 +42,7 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
                 {selectedClass.spotsAvailable}
               </span>
             </p>
+            <p>Total Spots: {selectedClass.totalSpots}</p>
             <p className="text-muted-foreground">{selectedClass.description}</p>
             <p>
               Location Type:{" "}
@@ -62,7 +68,7 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
                 </>
               )}
             </div>
-            <Button className="w-full" asChild>
+            <Button className="w-full" asChild onClick={handleSignUp}>
               <Link href={selectedClass.paymentLink}>Sign Up Now</Link>
             </Button>
           </div>

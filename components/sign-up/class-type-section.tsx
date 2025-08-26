@@ -11,9 +11,14 @@ import { ClassData } from "@/lib/types";
 interface ClassTypeSectionProps {
   classType: string;
   classes?: ClassData[];
+  onSelectClass: (classId: string) => void;
 }
 
-const ClassTypeSection = ({ classType, classes }: ClassTypeSectionProps) => {
+const ClassTypeSection = ({
+  classType,
+  classes,
+  onSelectClass,
+}: ClassTypeSectionProps) => {
   const emptyContent = (
     <>
       <div className="text-center pt-4">
@@ -35,7 +40,14 @@ const ClassTypeSection = ({ classType, classes }: ClassTypeSectionProps) => {
       <AccordionTrigger>{`Class Type ${classType}`}</AccordionTrigger>
       <AccordionContent className="space-y-2 overflow-y-auto max-h-[300px]">
         {classes?.length
-          ? classes.map((classData) => <ClassButton key={classData.id} />)
+          ? classes.map((classData) => (
+              <ClassButton
+                key={classData.id}
+                date={classData.date.toDateString()}
+                spotsAvailable={classData.spotsAvailable}
+                onClick={() => onSelectClass(classData.id)}
+              />
+            ))
           : emptyContent}
       </AccordionContent>
     </AccordionItem>
