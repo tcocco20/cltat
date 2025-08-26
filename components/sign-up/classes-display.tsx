@@ -9,7 +9,11 @@ import {
 import { Accordion } from "../ui/accordion";
 import ClassTypeSection from "./class-type-section";
 
-const ClassesDisplay = () => {
+interface ClassesDisplayProps {
+  onSelectClass: (classId: string) => void;
+}
+
+const ClassesDisplay = ({ onSelectClass }: ClassesDisplayProps) => {
   return (
     <Card>
       <CardHeader>
