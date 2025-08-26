@@ -8,8 +8,12 @@ import ClassButton from "./class-button";
 import { Button } from "../ui/button";
 import { ClassData } from "@/lib/types";
 
-const ClassTypeSection = () => {
-  const classes = [] as ClassData[];
+interface ClassTypeSectionProps {
+  classType: string;
+  classes?: ClassData[];
+}
+
+const ClassTypeSection = ({ classType, classes }: ClassTypeSectionProps) => {
   const emptyContent = (
     <>
       <div className="text-center pt-4">
@@ -27,10 +31,10 @@ const ClassTypeSection = () => {
     </>
   );
   return (
-    <AccordionItem value="item-1">
-      <AccordionTrigger>Class Type 1</AccordionTrigger>
+    <AccordionItem value={classType}>
+      <AccordionTrigger>{`Class Type ${classType}`}</AccordionTrigger>
       <AccordionContent className="space-y-2 overflow-y-auto max-h-[300px]">
-        {classes.length > 0
+        {classes?.length
           ? classes.map((classData) => <ClassButton key={classData.id} />)
           : emptyContent}
       </AccordionContent>

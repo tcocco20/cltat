@@ -32,5 +32,8 @@ export interface ClassData {
   isRemote: boolean;
   location: string | null;
   spotsAvailable: number;
+  totalSpots: number;
   type: string;
+  cost: number;
+  paymentLink: string;
 }
