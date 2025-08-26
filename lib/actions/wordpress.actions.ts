@@ -1,6 +1,6 @@
 "use server";
 
-import { ClassData } from "../types";
+import { ClassData, ClassTypeSimple } from "../types";
 import { singleMenuQuery, singlePageQuery } from "../wordpress/queries";
 import { PageRequest } from "../wordpress/types";
 import { MenuRequest } from "../wordpress/types/request-types";
@@ -29,7 +29,7 @@ export const getActiveClasses = async (): Promise<ClassData[]> => {
   return reshapeClasses([]);
 };
 
-export const getClassTypesSimple = async (): Promise<string[]> => {
+export const getClassTypesSimple = async (): Promise<ClassTypeSimple[]> => {
   return [];
 };
 

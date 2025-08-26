@@ -37,3 +37,8 @@ export interface ClassData {
   cost: number;
   paymentLink: string;
 }
+
+export interface ClassTypeSimple {
+  name: string;
+  slug: string;
+}

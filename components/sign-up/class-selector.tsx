@@ -2,7 +2,7 @@
 import { useState } from "react";
 import ClassesDisplay from "./classes-display";
 import SelectedClassInfo from "./selected-class-info";
-import { ClassData } from "@/lib/types";
+import { ClassData, ClassTypeSimple } from "@/lib/types";
 import {
   Card,
   CardContent,
@@ -14,7 +14,7 @@ import { Button } from "../ui/button";
 
 interface ClassSelectorProps {
   classes: ClassData[];
-  classTypes: string[];
+  classTypes: ClassTypeSimple[];
 }
 
 const ClassSelector = ({ classes, classTypes }: ClassSelectorProps) => {

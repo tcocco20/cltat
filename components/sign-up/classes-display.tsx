@@ -8,10 +8,10 @@ import {
 } from "../ui/card";
 import { Accordion } from "../ui/accordion";
 import ClassTypeSection from "./class-type-section";
-import { ClassData } from "@/lib/types";
+import { ClassData, ClassTypeSimple } from "@/lib/types";
 
 interface ClassesDisplayProps {
-  classTypes: string[];
+  classTypes: ClassTypeSimple[];
   classes: ClassData[];
   onSelectClass: (classId: string) => void;
 }
@@ -21,6 +21,16 @@ const ClassesDisplay = ({
   classes,
   onSelectClass,
 }: ClassesDisplayProps) => {
+  const displayClasses = () =>
+    classTypes.map((classType) => (
+      <ClassTypeSection
+        key={classType.slug}
+        classType={classType}
+        classes={classes.filter((cls) => cls.type === classType.slug)}
+        onSelectClass={onSelectClass}
+      />
+    ));
+
   return (
     <Card>
       <CardHeader>
@@ -28,9 +38,8 @@ const ClassesDisplay = ({
         <CardDescription>Select a class to view more details</CardDescription>
       </CardHeader>
       <CardContent>
-        <Accordion type="single" defaultValue="item-1" collapsible>
-          <ClassTypeSection classType="item-1" onSelectClass={onSelectClass} />
-          <ClassTypeSection classType="item-2" onSelectClass={onSelectClass} />
+        <Accordion type="single" defaultValue={classTypes[0].slug} collapsible>
+          {displayClasses()}
         </Accordion>
       </CardContent>
     </Card>
