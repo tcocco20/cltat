@@ -3,6 +3,7 @@ import { Card, CardContent } from "../ui/card";
 import { ClassData } from "@/lib/types";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { formatPrice } from "@/lib/utils";
 
 interface SelectedClassInfoProps {
   selectedClass: ClassData | null;
@@ -32,14 +33,17 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
             <h2 className="text-lg md:text-xl xl:text-2xl font-semibold">
               {selectedClass.type}
             </h2>
-            <p className="text-red-500">{selectedClass.date.toISOString()}</p>
+            <p className="text-red-500">
+              {selectedClass.date.toDateString()}{" "}
+              {selectedClass.date.toLocaleTimeString()}
+            </p>
             <p className="font-semibold lg:text-lg">
-              Price per spot: {selectedClass.cost}
+              Price per spot: {formatPrice(selectedClass.cost)}
             </p>
             <p>
               Spots remaining:{" "}
               <span className="font-semibold">
-                {selectedClass.spotsAvailable}
+                {selectedClass.totalSpots - selectedClass.spotsTaken}
               </span>
             </p>
             <p>Total Spots: {selectedClass.totalSpots}</p>
