@@ -26,14 +26,20 @@ export interface WPImage {
 export type Menu = LinkData[];
 
 export interface ClassData {
-  id: string;
+  id: number;
   description: string;
   date: Date;
   isRemote: boolean;
   location: string | null;
-  spotsAvailable: number;
+  spotsTaken: number;
   totalSpots: number;
   type: string;
+  typeSlug: string;
   cost: number;
   paymentLink: string;
+}
+
+export interface ClassTypeSimple {
+  name: string;
+  slug: string;
 }

@@ -1,9 +1,10 @@
 import { randomUUID } from "crypto";
-import { BlockData, Menu, PageData, WPImage } from "../types";
+import { BlockData, ClassData, Menu, PageData, WPImage } from "../types";
 import {
   Connection,
   PageResponse,
   WordPressBlock,
+  WordPressClass,
   WordPressImage,
 } from "./types";
 import { MenuResponse } from "./types/response-types";
@@ -54,4 +55,28 @@ export const reshapeMenu = (menu: MenuResponse): Menu | null => {
     title: item.label,
     href: item.path,
   }));
+};
+
+export const reshapeClass = (cls: WordPressClass): ClassData => {
+  const classTypeData = removeEdgesAndNodes(cls.classTypes)[0];
+
+  return {
+    id: cls.databaseId,
+    description: cls.classInformation.description,
+    date: new Date(cls.classInformation.classDateTime),
+    isRemote: cls.classInformation.isRemote,
+    location: cls.classInformation.classLocation,
+    spotsTaken: cls.classData.spotsTaken ?? 0,
+    totalSpots: cls.classData.totalSpots,
+    type: classTypeData.name,
+    typeSlug: classTypeData.slug,
+    cost: classTypeData.paymentInformation.cost,
+    paymentLink: classTypeData.paymentInformation.paymentLink,
+  };
+};
+
+export const reshapeClasses = (classes: WordPressClass[]): ClassData[] => {
+  if (!classes || classes.length === 0) return [];
+
+  return classes.map((cls) => reshapeClass(cls));
 };

@@ -6,12 +6,12 @@ import {
 } from "../ui/accordion";
 import ClassButton from "./class-button";
 import { Button } from "../ui/button";
-import { ClassData } from "@/lib/types";
+import { ClassData, ClassTypeSimple } from "@/lib/types";
 
 interface ClassTypeSectionProps {
-  classType: string;
+  classType: ClassTypeSimple;
   classes?: ClassData[];
-  onSelectClass: (classId: string) => void;
+  onSelectClass: (classId: number) => void;
 }
 
 const ClassTypeSection = ({
@@ -36,15 +36,15 @@ const ClassTypeSection = ({
     </>
   );
   return (
-    <AccordionItem value={classType}>
-      <AccordionTrigger>{`Class Type ${classType}`}</AccordionTrigger>
+    <AccordionItem value={classType.slug}>
+      <AccordionTrigger>{classType.name}</AccordionTrigger>
       <AccordionContent className="space-y-2 overflow-y-auto max-h-[300px]">
         {classes?.length
           ? classes.map((classData) => (
               <ClassButton
                 key={classData.id}
                 date={classData.date.toDateString()}
-                spotsAvailable={classData.spotsAvailable}
+                spotsAvailable={classData.totalSpots - classData.spotsTaken}
                 onClick={() => onSelectClass(classData.id)}
               />
             ))
