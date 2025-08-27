@@ -42,3 +42,48 @@ export const simpleClassTypesQuery = /* GraphQL */ `
     }
   }
 `;
+
+export const AllActiveClassesQuery = /* GraphQL */ `
+  query ActiveClassesQuery($today: String!) {
+    classes(
+      where: {
+        metaQuery: {
+          metaArray: {
+            key: "class_date_time"
+            value: $today
+            compare: GREATER_THAN_OR_EQUAL_TO
+            type: DATETIME
+          }
+        }
+      }
+    ) {
+      edges {
+        node {
+          classData {
+            spotsTaken
+            totalSpots
+          }
+          classInformation {
+            classLocation
+            description
+            isRemote
+            classDateTime
+          }
+          classTypes {
+            edges {
+              node {
+                paymentInformation {
+                  cost
+                  paymentLink
+                }
+                name
+                slug
+              }
+            }
+          }
+          databaseId
+        }
+      }
+    }
+  }
+`;

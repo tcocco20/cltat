@@ -11,7 +11,7 @@ import { ClassData, ClassTypeSimple } from "@/lib/types";
 interface ClassTypeSectionProps {
   classType: ClassTypeSimple;
   classes?: ClassData[];
-  onSelectClass: (classId: string) => void;
+  onSelectClass: (classId: number) => void;
 }
 
 const ClassTypeSection = ({
@@ -44,7 +44,7 @@ const ClassTypeSection = ({
               <ClassButton
                 key={classData.id}
                 date={classData.date.toDateString()}
-                spotsAvailable={classData.spotsAvailable}
+                spotsAvailable={classData.totalSpots - classData.spotsTaken}
                 onClick={() => onSelectClass(classData.id)}
               />
             ))

@@ -18,7 +18,32 @@ export interface WordPressImage {
 }
 
 export interface WordPressClass {
-  id: string;
+  classData: WordPressClassData;
+  classInformation: WordPressClassInformation;
+  classTypes: Connection<WordPressClassType>;
+  databaseId: number;
+}
+
+interface WordPressClassType {
+  paymentInformation: WordPressPaymentInformation;
+  name: string;
+  slug: string;
+}
+interface WordPressPaymentInformation {
+  cost: number;
+  paymentLink: string;
+}
+
+interface WordPressClassInformation {
+  classLocation: null | string;
+  description: string;
+  isRemote: boolean;
+  classDateTime: string;
+}
+
+interface WordPressClassData {
+  spotsTaken: number | null;
+  totalSpots: number;
 }
 
 export type { Connection, ExtractVariables, PageRequest, PageResponse };

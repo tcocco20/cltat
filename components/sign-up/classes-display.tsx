@@ -13,7 +13,7 @@ import { ClassData, ClassTypeSimple } from "@/lib/types";
 interface ClassesDisplayProps {
   classTypes: ClassTypeSimple[];
   classes: ClassData[];
-  onSelectClass: (classId: string) => void;
+  onSelectClass: (classId: number) => void;
 }
 
 const ClassesDisplay = ({
@@ -26,7 +26,7 @@ const ClassesDisplay = ({
       <ClassTypeSection
         key={classType.slug}
         classType={classType}
-        classes={classes.filter((cls) => cls.type === classType.slug)}
+        classes={classes.filter((cls) => cls.typeSlug === classType.slug)}
         onSelectClass={onSelectClass}
       />
     ));

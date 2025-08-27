@@ -1,13 +1,16 @@
 "use server";
 
 import { ClassData, ClassTypeSimple } from "../types";
+import { formatDateToMySQLDate } from "../utils";
 import {
+  AllActiveClassesQuery,
   simpleClassTypesQuery,
   singleMenuQuery,
   singlePageQuery,
 } from "../wordpress/queries";
 import { PageRequest } from "../wordpress/types";
 import {
+  AllActiveClassesRequest,
   MenuRequest,
   SimpleClassTypesRequest,
 } from "../wordpress/types/request-types";
@@ -38,7 +41,12 @@ export const getMenu = async (slug: string) => {
 };
 
 export const getActiveClasses = async (): Promise<ClassData[]> => {
-  return reshapeClasses([]);
+  const response = await wordPressFetch<AllActiveClassesRequest>({
+    query: AllActiveClassesQuery,
+    variables: { today: formatDateToMySQLDate(new Date()) },
+  });
+
+  return reshapeClasses(removeEdgesAndNodes(response.body.data.classes));
 };
 
 export const getClassTypesSimple = async (): Promise<ClassTypeSimple[]> => {

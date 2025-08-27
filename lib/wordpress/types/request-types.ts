@@ -1,4 +1,5 @@
 import {
+  ActiveClassesResponse,
   MenuResponse,
   PageResponse,
   SimpleClassTypesResponse,
@@ -25,5 +26,14 @@ export type MenuRequest = {
 export type SimpleClassTypesRequest = {
   data: {
     classTypes: SimpleClassTypesResponse;
+  };
+};
+
+export type AllActiveClassesRequest = {
+  data: {
+    classes: ActiveClassesResponse;
+  };
+  variables: {
+    today: string;
   };
 };

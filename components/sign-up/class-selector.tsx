@@ -39,7 +39,7 @@ const ClassSelector = ({ classes, classTypes }: ClassSelectorProps) => {
     </Card>
   );
 
-  const handleSelectClass = (classId: string) => {
+  const handleSelectClass = (classId: number) => {
     setSelectedClass(classes.find((cls) => cls.id === classId) || null);
   };
 
