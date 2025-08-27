@@ -5,7 +5,7 @@ interface HeadingBlockProps {
 }
 
 const HeadingBlock = ({ block }: HeadingBlockProps) => {
-  console.log("HeadingBlock", block);
+  // console.log("HeadingBlock", block);
   return <h2 className="text-2xl">{block.attributes.content}</h2>;
 };
 

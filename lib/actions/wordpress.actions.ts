@@ -1,10 +1,22 @@
 "use server";
 
 import { ClassData, ClassTypeSimple } from "../types";
-import { singleMenuQuery, singlePageQuery } from "../wordpress/queries";
+import {
+  simpleClassTypesQuery,
+  singleMenuQuery,
+  singlePageQuery,
+} from "../wordpress/queries";
 import { PageRequest } from "../wordpress/types";
-import { MenuRequest } from "../wordpress/types/request-types";
-import { reshapeClasses, reshapeMenu, reshapePage } from "../wordpress/utils";
+import {
+  MenuRequest,
+  SimpleClassTypesRequest,
+} from "../wordpress/types/request-types";
+import {
+  removeEdgesAndNodes,
+  reshapeClasses,
+  reshapeMenu,
+  reshapePage,
+} from "../wordpress/utils";
 import { wordPressFetch } from "../wordpress/wordpressFetch";
 
 export const getSinglePage = async (slug: string) => {
@@ -30,7 +42,11 @@ export const getActiveClasses = async (): Promise<ClassData[]> => {
 };
 
 export const getClassTypesSimple = async (): Promise<ClassTypeSimple[]> => {
-  return [];
+  const response = await wordPressFetch<SimpleClassTypesRequest>({
+    query: simpleClassTypesQuery,
+  });
+
+  return removeEdgesAndNodes(response.body.data.classTypes);
 };
 
 export const getClassTypes = async (): Promise<string[]> => {

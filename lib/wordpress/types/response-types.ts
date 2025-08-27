@@ -17,3 +17,8 @@ export interface MenuResponse {
     label: string;
   }>;
 }
+
+export type SimpleClassTypesResponse = Connection<{
+  name: string;
+  slug: string;
+}>;

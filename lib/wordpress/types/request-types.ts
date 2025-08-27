@@ -1,4 +1,8 @@
-import { MenuResponse, PageResponse } from "./response-types";
+import {
+  MenuResponse,
+  PageResponse,
+  SimpleClassTypesResponse,
+} from "./response-types";
 
 export type PageRequest = {
   data: {
@@ -15,5 +19,11 @@ export type MenuRequest = {
   };
   variables: {
     slug: string;
+  };
+};
+
+export type SimpleClassTypesRequest = {
+  data: {
+    classTypes: SimpleClassTypesResponse;
   };
 };

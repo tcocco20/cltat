@@ -29,3 +29,16 @@ export const singleMenuQuery = /* GraphQL */ `
     }
   }
 `;
+
+export const simpleClassTypesQuery = /* GraphQL */ `
+  query SimpleClassTypes {
+    classTypes {
+      edges {
+        node {
+          name
+          slug
+        }
+      }
+    }
+  }
+`;
