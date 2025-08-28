@@ -21,10 +21,26 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
     </div>
   );
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     // Set cookie with class ID so when user returns, the correct class is selected
-    document.cookie = `selectedClassId=${selectedClass!.id}; path=/`;
+    // Might not need anymore, will remove if not needed
+    // document.cookie = `selectedClassId=${selectedClass!.id}; path=/`;
+
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        classId: selectedClass!.id,
+      }),
+    });
+    const data = await res.json();
+    if (data.checkoutUrl) {
+      window.location.href = data.checkoutUrl;
+    } else {
+      alert("Checkout failed");
+    }
   };
+
   return (
     <Card className="h-full flex flex-col justify-center">
       <CardContent>
@@ -72,8 +88,9 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
                 </>
               )}
             </div>
-            <Button className="w-full" asChild onClick={handleSignUp}>
-              <Link href={selectedClass.paymentLink}>Sign Up Now</Link>
+            <Button className="w-full" onClick={handleSignUp}>
+              Sign Up Now
+              {/* <Link href={selectedClass.paymentLink}>Sign Up Now</Link> */}
             </Button>
           </div>
         ) : (
