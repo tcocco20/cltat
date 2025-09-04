@@ -1,17 +1,33 @@
-// import { create } from "zustand";
+import { create } from "zustand";
+import {
+  CustomerDetails,
+  CustomerIdentification,
+  CustomerInfo,
+} from "../types";
 
-// const useCustomerDetailsStore = create((set) => ({
-//   customerDetails: {
-//     givenName: "",
-//     familyName: "",
-//     email: "",
-//     phone: "",
-//     addressLines: [],
-//     city: "",
-//     state: "",
-//     countryCode: "",
-//   },
-//   setCustomerDetails: (details) => set({ customerDetails: details }),
-// }));
+interface CustomerDetailsState {
+  customerDetails: CustomerDetails | null;
+  customerInfo: CustomerInfo | null;
+  customerIdentification: CustomerIdentification | null;
+  setCustomerInfo: (info: CustomerInfo) => void;
+  setCustomerIdentification: (identification: CustomerIdentification) => void;
+  setCustomerDetails: (
+    info: CustomerInfo,
+    identification: CustomerIdentification
+  ) => void;
+}
 
-// export default useCustomerDetailsStore;
+const useCustomerDetailsStore = create<CustomerDetailsState>((set) => ({
+  customerDetails: null,
+  customerInfo: null,
+  customerIdentification: null,
+  setCustomerInfo: (info: CustomerInfo) => set({ customerInfo: info }),
+  setCustomerIdentification: (identification: CustomerIdentification) =>
+    set({ customerIdentification: identification }),
+  setCustomerDetails: (
+    info: CustomerInfo,
+    identification: CustomerIdentification
+  ) => set({ customerDetails: { ...info, ...identification } }),
+}));
+
+export default useCustomerDetailsStore;

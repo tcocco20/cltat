@@ -1,3 +1,6 @@
+import z from "zod";
+import { userDetailsSchema, userIdentificationSchema } from "../validators";
+
 export interface PageData {
   blocks: BlockData[];
   title: string;
@@ -43,3 +46,8 @@ export interface ClassTypeSimple {
   name: string;
   slug: string;
 }
+
+export type CustomerInfo = z.infer<typeof userDetailsSchema>;
+export type CustomerIdentification = z.infer<typeof userIdentificationSchema>;
+
+export type CustomerDetails = CustomerInfo & CustomerIdentification;

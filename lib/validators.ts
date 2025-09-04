@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const userDetailsSchema = z.object({
+export const userDetailsSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.email("Invalid email").min(1, "Email is required"),
@@ -9,4 +9,16 @@ const userDetailsSchema = z.object({
   city: z.string().min(1, "City is required"),
   state: z.string().min(2).max(2, "Invalid state code"),
   countryCode: z.string().min(2).max(2, "Invalid country code").default("US"),
+});
+
+export const userIdentificationSchema = z.object({
+  dateOfBirth: z
+    .date()
+    .min(new Date("1900-01-01"), "Invalid date of birth")
+    .max(new Date(), "Date of birth cannot be in the future"),
+  DPSST_PSID: z.string().optional(),
+  photoId: z
+    .file()
+    .mime(["image/*", "application/pdf"], "File must be an image or PDF")
+    .nonoptional("Photo ID is required"),
 });
