@@ -1,12 +1,8 @@
 // app/api/checkout/route.ts
-import {
-  APP_URL,
-  SQUARE_ACCESS_TOKEN,
-  SQUARE_LOCATION_ID,
-} from "@/lib/constants";
+import { SQUARE_ACCESS_TOKEN, SQUARE_LOCATION_ID } from "@/lib/constants";
 import { NextResponse, NextRequest } from "next/server";
 import { randomUUID } from "crypto";
-import { SquareClient, SquareEnvironment, Square } from "square";
+import { SquareClient, SquareEnvironment } from "square";
 
 export const runtime = "nodejs";
 
@@ -93,6 +89,10 @@ export async function POST(req: NextRequest) {
       orderId: order.id,
       autocomplete: true, // capture now
       referenceId: classId,
+      // appFeeMoney: {
+      //   amount: BigInt(100), // use to add $1.00 fee to checkout
+      //   currency: "USD",
+      // },
       // buyerEmailAddress: buyerEmail, \
       // buyerPhoneNumber: buyerPhone, -- May not need these, but will test them later to see how it shows up to customers
       // note: `Class signup: ${title}`,/

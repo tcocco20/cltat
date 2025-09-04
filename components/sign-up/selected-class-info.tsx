@@ -2,8 +2,9 @@ import React from "react";
 import { Card, CardContent } from "../ui/card";
 import { ClassData } from "@/lib/types";
 import Link from "next/link";
-import { Button } from "../ui/button";
+// import { Button } from "../ui/button";
 import { formatPrice } from "@/lib/utils";
+import SignUpButton from "./sign-up-button";
 
 interface SelectedClassInfoProps {
   selectedClass: ClassData | null;
@@ -21,25 +22,25 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
     </div>
   );
 
-  const handleSignUp = async () => {
-    // Set cookie with class ID so when user returns, the correct class is selected
-    // Might not need anymore, will remove if not needed
-    // document.cookie = `selectedClassId=${selectedClass!.id}; path=/`;
+  // const handleSignUp = async () => {
+  //   // Set cookie with class ID so when user returns, the correct class is selected
+  //   // Might not need anymore, will remove if not needed
+  //   // document.cookie = `selectedClassId=${selectedClass!.id}; path=/`;
 
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        classId: selectedClass!.id,
-      }),
-    });
-    const data = await res.json();
-    if (data.checkoutUrl) {
-      window.location.href = data.checkoutUrl;
-    } else {
-      alert("Checkout failed");
-    }
-  };
+  //   const res = await fetch("/api/checkout", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       classId: selectedClass!.id,
+  //     }),
+  //   });
+  //   const data = await res.json();
+  //   if (data.checkoutUrl) {
+  //     window.location.href = data.checkoutUrl;
+  //   } else {
+  //     alert("Checkout failed");
+  //   }
+  // };
 
   return (
     <Card className="h-full flex flex-col justify-center">
@@ -88,10 +89,10 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
                 </>
               )}
             </div>
-            <Button className="w-full" onClick={handleSignUp}>
+            <SignUpButton />
+            {/* <Button className="w-full" onClick={handleSignUp}>
               Sign Up Now
-              {/* <Link href={selectedClass.paymentLink}>Sign Up Now</Link> */}
-            </Button>
+            </Button> */}
           </div>
         ) : (
           noClassSelected

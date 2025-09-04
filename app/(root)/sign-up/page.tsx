@@ -1,4 +1,5 @@
 import ClassSelector from "@/components/sign-up/class-selector";
+import SquareWrapper from "@/components/sign-up/square-wrapper";
 import {
   getActiveClasses,
   getClassTypesSimple,
@@ -10,7 +11,9 @@ const SignupPage = async () => {
   const classes = await getActiveClasses();
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center pt-12 md:pt-20">
-      <ClassSelector classes={classes} classTypes={classTypes} />
+      <SquareWrapper>
+        <ClassSelector classes={classes} classTypes={classTypes} />
+      </SquareWrapper>
     </div>
   );
 };
