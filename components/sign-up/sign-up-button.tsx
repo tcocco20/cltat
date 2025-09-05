@@ -12,8 +12,13 @@ import { useState } from "react";
 import CustomerInformationForm from "./customer-information-form";
 import CustomerIdentificationForm from "./customer-indentification-form";
 import PaymentForm from "./payment-form";
+import SquareWrapper from "./square-wrapper";
 
-export default function SignUpButton() {
+interface SignUpButtonProps {
+  classId: string;
+}
+
+export default function SignUpButton({ classId }: SignUpButtonProps) {
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleChangeStep = (step: number) => {
@@ -33,13 +38,17 @@ export default function SignUpButton() {
           </DialogTitle>
           <SignUpSteps currentStep={currentStep} />
         </DialogHeader>
-        {currentStep === 1 && (
-          <CustomerInformationForm onChangeStep={handleChangeStep} />
-        )}
-        {currentStep === 2 && (
-          <CustomerIdentificationForm onChangeStep={handleChangeStep} />
-        )}
-        {currentStep === 3 && <PaymentForm onChangeStep={handleChangeStep} />}
+        <SquareWrapper>
+          {currentStep === 1 && (
+            <CustomerInformationForm onChangeStep={handleChangeStep} />
+          )}
+          {currentStep === 2 && (
+            <CustomerIdentificationForm onChangeStep={handleChangeStep} />
+          )}
+          {currentStep === 3 && (
+            <PaymentForm classId={classId} onChangeStep={handleChangeStep} />
+          )}
+        </SquareWrapper>
       </DialogContent>
     </Dialog>
   );

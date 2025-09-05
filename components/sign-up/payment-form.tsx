@@ -31,9 +31,10 @@ import { Button } from "../ui/button";
 
 interface PaymentFormProps {
   onChangeStep: (step: number) => void;
+  classId: string;
 }
 
-const PaymentForm = ({ onChangeStep }: PaymentFormProps) => {
+const PaymentForm = ({ onChangeStep, classId }: PaymentFormProps) => {
   //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   //   const [payments, setPayments] = useState<any>(null);
   //   // eslint-disable-next-line @typescript-eslint/no-explicit-any

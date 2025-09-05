@@ -19,7 +19,6 @@ interface MobileNavMenuProps {
 
 const MobileNavMenu = ({ links }: MobileNavMenuProps) => {
   const pathname = usePathname();
-  console.log("Current pathname:", pathname);
   return (
     <div className="flex md:hidden items-center">
       <Sheet>

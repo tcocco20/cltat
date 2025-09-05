@@ -2,7 +2,6 @@ import React from "react";
 import { Card, CardContent } from "../ui/card";
 import { ClassData } from "@/lib/types";
 import Link from "next/link";
-// import { Button } from "../ui/button";
 import { formatPrice } from "@/lib/utils";
 import SignUpButton from "./sign-up-button";
 
@@ -89,7 +88,7 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
                 </>
               )}
             </div>
-            <SignUpButton />
+            <SignUpButton classId={selectedClass.id.toString()} />
           </div>
         ) : (
           noClassSelected
