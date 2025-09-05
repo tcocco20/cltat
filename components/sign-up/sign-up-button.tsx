@@ -1,6 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogHeader,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import SignUpSteps from "./sign-up-steps";
 import { useState } from "react";
 import CustomerInformationForm from "./customer-information-form";
@@ -21,7 +27,12 @@ export default function SignUpButton() {
       </DialogTrigger>
       <DialogContent /* className="sm:max-w-[425px]" add classes here to control the max width */
       >
-        <SignUpSteps currentStep={currentStep} />
+        <DialogHeader>
+          <DialogTitle className="text-xl text-center">
+            Sign Up For Class
+          </DialogTitle>
+          <SignUpSteps currentStep={currentStep} />
+        </DialogHeader>
         {currentStep === 1 && (
           <CustomerInformationForm onChangeStep={handleChangeStep} />
         )}
