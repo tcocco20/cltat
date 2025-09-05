@@ -90,9 +90,6 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
               )}
             </div>
             <SignUpButton />
-            {/* <Button className="w-full" onClick={handleSignUp}>
-              Sign Up Now
-            </Button> */}
           </div>
         ) : (
           noClassSelected

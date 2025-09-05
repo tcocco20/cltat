@@ -1,7 +1,9 @@
-import React from "react";
+interface SignUpStepsProps {
+  currentStep: number;
+}
 
-const SignUpSteps = () => {
-  return <div>SignUpSteps</div>;
+const SignUpSteps = ({ currentStep }: SignUpStepsProps) => {
+  return <div>SignUpSteps {currentStep}</div>;
 };
 
 export default SignUpSteps;
