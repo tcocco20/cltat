@@ -4,11 +4,17 @@ export const userDetailsSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.email("Invalid email").min(1, "Email is required"),
-  phone: z.string().min(1, "Phone number is required"),
-  addressLines: z.array(z.string().min(1)).min(1, "Address is required"),
+  phone: z
+    .string()
+    .regex(
+      /^\d{10}$/,
+      "Please enter phone number without dashes or spaces e.g. (1234567890)"
+    ),
+  addressLineOne: z.string().min(1, "Address is required"),
+  addressLineTwo: z.string().optional(),
   city: z.string().min(1, "City is required"),
-  state: z.string().min(2).max(2, "Invalid state code"),
-  countryCode: z.string().min(2).max(2, "Invalid country code").default("US"),
+  state: z.string().min(2, "Invalid state code").max(2, "Invalid state code"),
+  countryCode: z.string().min(2).max(2, "Invalid country code"),
 });
 
 export const userIdentificationSchema = z.object({

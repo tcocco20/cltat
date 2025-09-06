@@ -30,8 +30,7 @@ export default function SignUpButton({ classId }: SignUpButtonProps) {
       <DialogTrigger asChild>
         <Button className="w-full">Sign Up For Class</Button>
       </DialogTrigger>
-      <DialogContent /* className="sm:max-w-[425px]" add classes here to control the max width */
-      >
+      <DialogContent className="w-full md:max-w-[700px]">
         <DialogHeader>
           <DialogTitle className="text-xl text-center">
             Sign Up For Class
