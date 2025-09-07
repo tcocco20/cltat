@@ -123,19 +123,25 @@ const CustomerIdentificationForm = ({
           <FormField
             control={form.control}
             name="photoId"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Photo ID</FormLabel>
-                <FormControl>
-                  <Input
-                    type="file"
-                    placeholder="Enter your Photo ID"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              const { onChange, onBlur, name, ref } = field;
+              return (
+                <FormItem className="w-full">
+                  <FormLabel>Photo ID</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="file"
+                      placeholder="Upload a photo or PDF of your Photo ID"
+                      name={name}
+                      onChange={(e) => onChange(e.target.files?.[0] ?? null)}
+                      onBlur={onBlur}
+                      ref={ref}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
           />
           <DialogFooter>
             <Button variant="outline" onClick={() => onChangeStep(1)}>
