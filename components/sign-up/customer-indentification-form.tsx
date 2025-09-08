@@ -25,6 +25,7 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "../ui/calendar";
 import { Input } from "../ui/input";
+import IdUploadInput from "./id-upload-input";
 
 interface CustomerIdentificationFormProps {
   onChangeStep: (step: number) => void;
@@ -100,9 +101,6 @@ const CustomerIdentificationForm = ({
                     />
                   </PopoverContent>
                 </Popover>
-                <FormDescription>
-                  Your date of birth is used to calculate your age.
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -116,6 +114,9 @@ const CustomerIdentificationForm = ({
                 <FormControl>
                   <Input placeholder="Enter your DPSST PSID" {...field} />
                 </FormControl>
+                <FormDescription>
+                  Leave blank or enter &quot;N/A&quot; if you are a new applicant.
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -123,16 +124,12 @@ const CustomerIdentificationForm = ({
           <FormField
             control={form.control}
             name="photoId"
-            render={({ field }) => {
+            render={() => {
               return (
                 <FormItem className="w-full">
                   <FormLabel>Photo ID</FormLabel>
                   <FormControl>
-                    <Input
-                      type="file"
-                      placeholder="Upload a photo or PDF of your Photo ID"
-                      {...field}
-                    />
+                    <IdUploadInput />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
