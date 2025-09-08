@@ -124,7 +124,6 @@ const CustomerIdentificationForm = ({
             control={form.control}
             name="photoId"
             render={({ field }) => {
-              const { onChange, onBlur, name, ref } = field;
               return (
                 <FormItem className="w-full">
                   <FormLabel>Photo ID</FormLabel>
@@ -132,10 +131,7 @@ const CustomerIdentificationForm = ({
                     <Input
                       type="file"
                       placeholder="Upload a photo or PDF of your Photo ID"
-                      name={name}
-                      onChange={(e) => onChange(e.target.files?.[0] ?? null)}
-                      onBlur={onBlur}
-                      ref={ref}
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage />
@@ -144,10 +140,16 @@ const CustomerIdentificationForm = ({
             }}
           />
           <DialogFooter>
-            <Button variant="outline" onClick={() => onChangeStep(1)}>
+            <Button
+              variant="outline"
+              onClick={() => onChangeStep(1)}
+              disabled={isPending}
+            >
               Back
             </Button>
-            <Button type="submit">Next Step</Button>
+            <Button type="submit" disabled={isPending}>
+              Next Step
+            </Button>
           </DialogFooter>
         </form>
       </Form>

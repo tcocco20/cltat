@@ -23,8 +23,5 @@ export const userIdentificationSchema = z.object({
     .min(new Date("1900-01-01"), "Invalid date of birth")
     .max(new Date(), "Date of birth cannot be in the future"),
   DPSST_PSID: z.string().optional(),
-  photoId: z
-    .file()
-    .mime(["image/*", "application/pdf"], "File must be an image or PDF")
-    .nonoptional("Photo ID is required"),
+  photoId: z.file().nonoptional("Photo ID is required"),
 });
