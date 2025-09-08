@@ -74,7 +74,6 @@ export const AllActiveClassesQuery = /* GraphQL */ `
               node {
                 paymentInformation {
                   cost
-                  paymentLink
                 }
                 name
                 slug

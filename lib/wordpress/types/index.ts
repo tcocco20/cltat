@@ -31,7 +31,6 @@ interface WordPressClassType {
 }
 interface WordPressPaymentInformation {
   cost: number;
-  paymentLink: string;
 }
 
 interface WordPressClassInformation {

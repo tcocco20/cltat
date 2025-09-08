@@ -71,7 +71,6 @@ export const reshapeClass = (cls: WordPressClass): ClassData => {
     type: classTypeData.name,
     typeSlug: classTypeData.slug,
     cost: classTypeData.paymentInformation.cost,
-    paymentLink: classTypeData.paymentInformation.paymentLink,
   };
 };
 
