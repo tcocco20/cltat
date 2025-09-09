@@ -3,34 +3,75 @@
 import { Card, CardContent, CardDescription, CardHeader } from "../ui/card";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 
-const IdUploadInput = () => {
-  const [photo, setPhoto] = useState<File | null>(null);
+interface IdUploadInputProps {
+  defaultValue?: {
+    id: number;
+    sourceUrl: string;
+    width: number;
+    height: number;
+  };
+  onUploadComplete: ({
+    id,
+    sourceUrl,
+    width,
+    height,
+  }: {
+    id: number;
+    sourceUrl: string;
+    width: number;
+    height: number;
+  }) => void;
+}
 
-  const handleUploadImage = () => {
+const IdUploadInput = ({
+  onUploadComplete,
+  defaultValue,
+}: IdUploadInputProps) => {
+  const [photo, setPhoto] = useState<File | null>(null);
+  const [uploadedPhoto, setUploadedPhoto] = useState<{
+    id: number;
+    sourceUrl: string;
+    width: number;
+    height: number;
+  } | null>(defaultValue || null);
+  const [isPending, startTransition] = useTransition();
+
+  const handleUploadImage = async () => {
     if (!photo) return;
 
-    const formData = new FormData();
-    formData.append("file", photo);
+    startTransition(async () => {
+      const formData = new FormData();
+      formData.append("file", photo);
 
-    fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Upload success:", data);
-        toast.success("Upload successful!");
-        // Handle success (e.g., show a message, store the uploaded file URL, etc.)
-      })
-      .catch((err) => {
-        toast.error("Upload failed.");
-        console.error("Upload error:", err);
-        // Handle error (e.g., show an error message)
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
       });
+      const data = await res.json();
+
+      if (res.ok) {
+        setUploadedPhoto({
+          id: data.media.id,
+          sourceUrl: data.media.source_url,
+          width: data.media.media_details.width,
+          height: data.media.media_details.height,
+        });
+        onUploadComplete({
+          id: data.media.id,
+          sourceUrl: data.media.source_url,
+          width: data.media.media_details.width,
+          height: data.media.media_details.height,
+        });
+        toast.success("Upload successful!");
+      } else {
+        toast.error("Upload failed.");
+        console.error("Upload error:", data);
+      }
+    });
   };
 
   return (
@@ -48,14 +89,14 @@ const IdUploadInput = () => {
           }}
         />
         <CardDescription>
-          Please upload a clear image or PDF of your ID.
+          Please upload a clear image of your ID.
         </CardDescription>
-        {photo && (
+        {uploadedPhoto && (
           <Image
-            src={URL.createObjectURL(photo)}
+            src={uploadedPhoto.sourceUrl}
             alt="Product Image"
-            width={500}
-            height={250}
+            width={uploadedPhoto.width}
+            height={uploadedPhoto.height}
             className="w-full object-cover rounded-sm object-center mx-auto"
           />
         )}
@@ -63,10 +104,10 @@ const IdUploadInput = () => {
         <Button
           type="button"
           variant={"outline"}
-          disabled={!photo}
+          disabled={!photo || isPending}
           onClick={handleUploadImage}
         >
-          Upload ID
+          {isPending ? "Uploading..." : "Upload ID"}
         </Button>
       </CardContent>
     </Card>

@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
-import { ControllerRenderProps, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { userIdentificationSchema } from "@/lib/validators";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import { useTransition } from "react";
@@ -26,6 +26,7 @@ import { CalendarIcon } from "lucide-react";
 import { Calendar } from "../ui/calendar";
 import { Input } from "../ui/input";
 import IdUploadInput from "./id-upload-input";
+import { customerIdentificationDefaultValues } from "@/lib/default-values";
 
 interface CustomerIdentificationFormProps {
   onChangeStep: (step: number) => void;
@@ -43,8 +44,18 @@ const CustomerIdentificationForm = ({
 
   const form = useForm<z.infer<typeof userIdentificationSchema>>({
     resolver: zodResolver(userIdentificationSchema),
-    defaultValues: customerIdentification || {},
+    defaultValues:
+      customerIdentification || customerIdentificationDefaultValues,
   });
+
+  const defaultPhoto = customerIdentification
+    ? {
+        id: customerIdentification.photoId,
+        sourceUrl: customerIdentification.sourceUrl,
+        width: customerIdentification.width as number,
+        height: customerIdentification.height as number,
+      }
+    : undefined;
 
   const [isPending, startTransition] = useTransition();
 
@@ -115,7 +126,8 @@ const CustomerIdentificationForm = ({
                   <Input placeholder="Enter your DPSST PSID" {...field} />
                 </FormControl>
                 <FormDescription>
-                  Leave blank or enter &quot;N/A&quot; if you are a new applicant.
+                  Leave blank or enter &quot;N/A&quot; if you are a new
+                  applicant.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -129,7 +141,15 @@ const CustomerIdentificationForm = ({
                 <FormItem className="w-full">
                   <FormLabel>Photo ID</FormLabel>
                   <FormControl>
-                    <IdUploadInput />
+                    <IdUploadInput
+                      defaultValue={defaultPhoto}
+                      onUploadComplete={(payload) => {
+                        form.setValue("photoId", payload.id);
+                        form.setValue("sourceUrl", payload.sourceUrl);
+                        form.setValue("width", payload.width);
+                        form.setValue("height", payload.height);
+                      }}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

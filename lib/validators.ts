@@ -17,11 +17,22 @@ export const userDetailsSchema = z.object({
   countryCode: z.string().min(2).max(2, "Invalid country code"),
 });
 
-export const userIdentificationSchema = z.object({
-  dateOfBirth: z
-    .date()
-    .min(new Date("1900-01-01"), "Invalid date of birth")
-    .max(new Date(), "Date of birth cannot be in the future"),
-  DPSST_PSID: z.string().optional(),
-  photoId: z.file().nonoptional("Photo ID is required"),
-});
+export const userIdentificationSchema = z
+  .object({
+    dateOfBirth: z
+      .date()
+      .min(new Date("1900-01-01"), "Invalid date of birth")
+      .max(new Date(), "Date of birth cannot be in the future"),
+    DPSST_PSID: z.string().optional(),
+    photoId: z
+      .number("photoId must be a number")
+      .min(1, "Photo ID must be positive")
+      .nonoptional("Photo ID is required"),
+    sourceUrl: z.url(),
+    height: z.number().optional(),
+    width: z.number().optional(),
+  })
+  .refine((data) => !!data.sourceUrl, {
+    message: "Source URL is required",
+    path: ["photoId"],
+  });
