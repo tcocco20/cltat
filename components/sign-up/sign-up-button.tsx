@@ -15,10 +15,11 @@ import PaymentForm from "./payment-form";
 import SquareWrapper from "./square-wrapper";
 
 interface SignUpButtonProps {
-  classId: string;
+  classId: number;
+  cost: number;
 }
 
-export default function SignUpButton({ classId }: SignUpButtonProps) {
+export default function SignUpButton({ classId, cost }: SignUpButtonProps) {
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleChangeStep = (step: number) => {
@@ -45,7 +46,11 @@ export default function SignUpButton({ classId }: SignUpButtonProps) {
             <CustomerIdentificationForm onChangeStep={handleChangeStep} />
           )}
           {currentStep === 3 && (
-            <PaymentForm classId={classId} onChangeStep={handleChangeStep} />
+            <PaymentForm
+              cost={cost}
+              classId={classId}
+              onChangeStep={handleChangeStep}
+            />
           )}
         </SquareWrapper>
       </DialogContent>

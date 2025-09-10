@@ -15,7 +15,7 @@ const client = new SquareClient({
 });
 
 type CheckoutBody = {
-  classId: string;
+  classId: number;
   sourceId: string; // Web Payments SDK token (nonce)
   verificationToken?: string; // from payments.verifyBuyer() if you enable SCA
 };
@@ -52,13 +52,13 @@ export async function POST(req: NextRequest) {
       idempotencyKey: orderIdempotencyKey,
       order: {
         locationId: SQUARE_LOCATION_ID,
-        referenceId: classId, // handy for cross-ref in your system
+        referenceId: classId.toString(), // handy for cross-ref in your system
         lineItems: [
           {
             name: "Test Class", // Replace with class title or generate one
             quantity: "1",
             basePriceMoney: {
-              amount: BigInt(100),
+              amount: BigInt(200),
               currency: "USD",
             },
           },
@@ -82,13 +82,13 @@ export async function POST(req: NextRequest) {
       idempotencyKey: paymentIdempotencyKey,
       sourceId: sourceId,
       amountMoney: {
-        amount: BigInt(100),
+        amount: BigInt(200),
         currency: "USD",
       },
       locationId: SQUARE_LOCATION_ID,
       orderId: order.id,
       autocomplete: true, // capture now
-      referenceId: classId,
+      referenceId: classId.toString(),
       // appFeeMoney: {
       //   amount: BigInt(100), // use to add $1.00 fee to checkout
       //   currency: "USD",
@@ -126,6 +126,7 @@ export async function POST(req: NextRequest) {
       orderId: order.id,
       status: payment.status, // e.g., "COMPLETED"
       receiptUrl: payment.receiptUrl,
+      success: true,
     });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

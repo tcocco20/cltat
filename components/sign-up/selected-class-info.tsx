@@ -21,26 +21,6 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
     </div>
   );
 
-  // const handleSignUp = async () => {
-  //   // Set cookie with class ID so when user returns, the correct class is selected
-  //   // Might not need anymore, will remove if not needed
-  //   // document.cookie = `selectedClassId=${selectedClass!.id}; path=/`;
-
-  //   const res = await fetch("/api/checkout", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       classId: selectedClass!.id,
-  //     }),
-  //   });
-  //   const data = await res.json();
-  //   if (data.checkoutUrl) {
-  //     window.location.href = data.checkoutUrl;
-  //   } else {
-  //     alert("Checkout failed");
-  //   }
-  // };
-
   return (
     <Card className="h-full flex flex-col justify-center">
       <CardContent>
@@ -88,7 +68,10 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
                 </>
               )}
             </div>
-            <SignUpButton classId={selectedClass.id.toString()} />
+            <SignUpButton
+              classId={selectedClass.id}
+              cost={selectedClass.cost}
+            />
           </div>
         ) : (
           noClassSelected
