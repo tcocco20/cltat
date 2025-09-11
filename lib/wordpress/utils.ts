@@ -1,5 +1,12 @@
 import { randomUUID } from "crypto";
-import { BlockData, ClassData, Menu, PageData, WPImage } from "../types";
+import {
+  BlockData,
+  ClassData,
+  Menu,
+  PageData,
+  SimpleClassData,
+  WPImage,
+} from "../types";
 import {
   Connection,
   PageResponse,
@@ -7,7 +14,7 @@ import {
   WordPressClass,
   WordPressImage,
 } from "./types";
-import { MenuResponse } from "./types/response-types";
+import { MenuResponse, SimpleClassApiResponse } from "./types/response-types";
 
 export function removeEdgesAndNodes<T>(array: Connection<T>): T[] {
   return array.edges.map((edge) => edge?.node);
@@ -70,6 +77,18 @@ export const reshapeClass = (cls: WordPressClass): ClassData => {
     totalSpots: cls.classData.totalSpots,
     type: classTypeData.name,
     typeSlug: classTypeData.slug,
+    cost: classTypeData.paymentInformation.cost,
+  };
+};
+
+export const reshapeSimpleClass = (
+  cls: SimpleClassApiResponse
+): SimpleClassData => {
+  const classTypeData = removeEdgesAndNodes(cls.classTypes)[0];
+
+  return {
+    spotsTaken: cls.classData.spotsTaken ?? 0,
+    totalSpots: cls.classData.totalSpots,
     cost: classTypeData.paymentInformation.cost,
   };
 };

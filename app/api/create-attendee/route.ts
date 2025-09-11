@@ -1,48 +1,48 @@
 // app/api/create-attendee/route.ts
+import { getClassByIdSimple } from "@/lib/actions/wordpress.actions";
 import { WP_API_URL, WP_APP_PASSWORD, WP_USERNAME } from "@/lib/constants";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { fullName, classId, photoId, orderId, paymentId, receiptUrl } =
-      await req.json();
+    const {
+      fullName,
+      email,
+      classId,
+      photoId,
+      //   orderId,
+      //   paymentId,
+      //   receiptUrl,
+    } = await req.json();
 
     const auth = Buffer.from(`${WP_USERNAME}:${WP_APP_PASSWORD}`).toString(
       "base64"
     );
 
-    const classRes = await fetch(
-      `${process.env.WP_URL}/wp-json/wp/v2/classes/${classId}`,
-      {
-        headers: { Authorization: `Basic ${auth}` },
-      }
-    );
+    const classRes = await getClassByIdSimple(classId);
 
-    const classData = await classRes.json();
-    let currentSpots = classData.acf?.spots_taken;
-    const totalSpots = classData.acf?.total_spots;
-
-    if (currentSpots && currentSpots === totalSpots) {
+    if (classRes && classRes.spotsTaken >= classRes.totalSpots) {
       return NextResponse.json({ error: "Class is full" }, { status: 400 });
     }
 
     // 1. Create attendee
-    const attendeeRes = await fetch(`${WP_API_URL}/wp-json/wp/v2/attendee`, {
+    const attendeeRes = await fetch(`${WP_API_URL}/attendee`, {
       method: "POST",
       headers: {
         Authorization: `Basic ${auth}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: fullName,
         status: "publish",
+        title: fullName + " " + classId,
         acf: {
-          fullName,
-          classId,
-          photoId,
-          orderId,
-          paymentId,
-          receiptUrl,
+          full_name: fullName,
+          email,
+          class: classId,
+          photo_id: photoId,
+          //   orderId,
+          //   paymentId,
+          //   receiptUrl,
         },
       }),
     });
@@ -56,26 +56,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 2. Update class spots_taken
-    if (currentSpots === null || currentSpots === undefined) {
-      currentSpots = 0;
-    }
-
-    const updatedRes = await fetch(
-      `${process.env.WP_URL}/wp-json/wp/v2/class/${classId}`,
-      {
-        method: "POST", // WP REST uses POST for updates
-        headers: {
-          Authorization: `Basic ${auth}`,
-          "Content-Type": "application/json",
+    const updatedRes = await fetch(`${WP_API_URL}/classes/${classId}`, {
+      method: "POST", // WP REST uses POST for updates
+      headers: {
+        Authorization: `Basic ${auth}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        acf: {
+          total_spots: classRes.totalSpots,
+          spots_taken: classRes.spotsTaken + 1,
         },
-        body: JSON.stringify({
-          acf: {
-            spots_taken: currentSpots + 1,
-          },
-        }),
-      }
-    );
+      }),
+    });
 
     const updatedClass = await updatedRes.json();
 

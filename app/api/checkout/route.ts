@@ -3,6 +3,7 @@ import { SQUARE_ACCESS_TOKEN, SQUARE_LOCATION_ID } from "@/lib/constants";
 import { NextResponse, NextRequest } from "next/server";
 import { randomUUID } from "crypto";
 import { SquareClient, SquareEnvironment } from "square";
+import { getClassByIdSimple } from "@/lib/actions/wordpress.actions";
 
 export const runtime = "nodejs";
 
@@ -34,11 +35,16 @@ export async function POST(req: NextRequest) {
 
     // 1) Look up class info (price in cents) from WordPress or your DB.
     // Replace this stub with your real lookup.
-    // const classData = await getClassById(body.classId);
-    // if (!classData) {
-    //   return NextResponse.json({ error: "Class not found" }, { status: 404 });
-    // }
-    // const { title, priceCents } = classData;
+    const classData = await getClassByIdSimple(classId);
+
+    if (classData === null) {
+      return NextResponse.json({ error: "Class not found" }, { status: 404 });
+    }
+
+    if (classData.spotsTaken >= classData.totalSpots) {
+      return NextResponse.json({ error: "Class is full" }, { status: 400 });
+    }
+    const classCost = classData.cost * 100;
 
     // 2) (Optional) attach or create a Square customer record.
     // For speed, we'll skip creation and just attach contact info to the payment.
@@ -58,7 +64,7 @@ export async function POST(req: NextRequest) {
             name: "Test Class", // Replace with class title or generate one
             quantity: "1",
             basePriceMoney: {
-              amount: BigInt(200),
+              amount: BigInt(classCost),
               currency: "USD",
             },
           },
@@ -82,7 +88,7 @@ export async function POST(req: NextRequest) {
       idempotencyKey: paymentIdempotencyKey,
       sourceId: sourceId,
       amountMoney: {
-        amount: BigInt(200),
+        amount: BigInt(classCost),
         currency: "USD",
       },
       locationId: SQUARE_LOCATION_ID,

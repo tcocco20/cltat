@@ -46,6 +46,12 @@ export interface ClassTypeSimple {
   slug: string;
 }
 
+export interface SimpleClassData {
+  spotsTaken: number;
+  totalSpots: number;
+  cost: number;
+}
+
 export type CustomerInfo = z.infer<typeof userDetailsSchema>;
 export type CustomerIdentification = z.infer<typeof userIdentificationSchema>;
 

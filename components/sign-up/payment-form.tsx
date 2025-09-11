@@ -40,6 +40,9 @@ const PaymentForm = ({ onChangeStep, classId, cost }: PaymentFormProps) => {
   const customerInformation = useCustomerDetailsStore(
     (state) => state.customerInfo
   );
+  const customerIdentification = useCustomerDetailsStore(
+    (state) => state.customerIdentification
+  );
 
   useEffect(() => {
     const initSquare = async () => {
@@ -122,6 +125,19 @@ const PaymentForm = ({ onChangeStep, classId, cost }: PaymentFormProps) => {
           // console.log("Data: ", data);
           if (data.success) {
             toast.success("Payment Successful! 🎉");
+            const classRes = await fetch("/api/create-attendee", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                classId: classId,
+                fullName: `${customerInformation!.firstName} ${
+                  customerInformation!.lastName
+                }`,
+                email: customerInformation!.email,
+                photoId: customerIdentification!.photoId,
+              }),
+            });
+            console.log(await classRes.json());
           } else {
             toast.error("Payment Failed ❌");
           }

@@ -1,10 +1,11 @@
 "use server";
 
-import { ClassData, ClassTypeSimple } from "../types";
+import { ClassData, ClassTypeSimple, SimpleClassData } from "../types";
 import { formatDateToMySQLDate } from "../utils";
 import {
   AllActiveClassesQuery,
   simpleClassTypesQuery,
+  singleClassApiQuery,
   singleMenuQuery,
   singlePageQuery,
 } from "../wordpress/queries";
@@ -12,6 +13,7 @@ import { PageRequest } from "../wordpress/types";
 import {
   AllActiveClassesRequest,
   MenuRequest,
+  SimpleClassApiRequest,
   SimpleClassTypesRequest,
 } from "../wordpress/types/request-types";
 import {
@@ -19,6 +21,7 @@ import {
   reshapeClasses,
   reshapeMenu,
   reshapePage,
+  reshapeSimpleClass,
 } from "../wordpress/utils";
 import { wordPressFetch } from "../wordpress/wordpressFetch";
 
@@ -47,6 +50,17 @@ export const getActiveClasses = async (): Promise<ClassData[]> => {
   });
 
   return reshapeClasses(removeEdgesAndNodes(response.body.data.classes));
+};
+
+export const getClassByIdSimple = async (
+  id: number
+): Promise<SimpleClassData> => {
+  const response = await wordPressFetch<SimpleClassApiRequest>({
+    query: singleClassApiQuery,
+    variables: { id },
+  });
+
+  return reshapeSimpleClass(response.body.data.class);
 };
 
 export const getClassTypesSimple = async (): Promise<ClassTypeSimple[]> => {

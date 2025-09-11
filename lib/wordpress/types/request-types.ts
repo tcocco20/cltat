@@ -2,6 +2,7 @@ import {
   ActiveClassesResponse,
   MenuResponse,
   PageResponse,
+  SimpleClassApiResponse,
   SimpleClassTypesResponse,
 } from "./response-types";
 
@@ -35,5 +36,14 @@ export type AllActiveClassesRequest = {
   };
   variables: {
     today: string;
+  };
+};
+
+export type SimpleClassApiRequest = {
+  data: {
+    class: SimpleClassApiResponse;
+  };
+  variables: {
+    id: number;
   };
 };

@@ -26,3 +26,20 @@ export type SimpleClassTypesResponse = Connection<{
 
 export type ActiveClassesResponse = Connection<WordPressClass>;
 
+export type SimpleClassApiResponse = {
+  classTypes: {
+    edges: [
+      {
+        node: {
+          paymentInformation: {
+            cost: number;
+          };
+        };
+      }
+    ];
+  };
+  classData: {
+    spotsTaken: number | null;
+    totalSpots: number;
+  };
+};
