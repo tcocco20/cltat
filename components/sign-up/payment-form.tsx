@@ -119,14 +119,16 @@ const PaymentForm = ({ onChangeStep, classId, cost }: PaymentFormProps) => {
           });
 
           const data = await res.json();
-          console.log("Data: ", data);
+          // console.log("Data: ", data);
           if (data.success) {
             toast.success("Payment Successful! 🎉");
           } else {
             toast.error("Payment Failed ❌");
           }
         } else {
-          toast.error("Card tokenization failed. Please check payment details and try again.");
+          toast.error(
+            "Card tokenization failed. Please check payment details and try again."
+          );
         }
       } catch (err) {
         console.error(err);
@@ -234,7 +236,11 @@ const PaymentForm = ({ onChangeStep, classId, cost }: PaymentFormProps) => {
         <p className="mb-2">Payment Method</p>
       </div>
       <DialogFooter>
-        <Button variant="outline" onClick={() => onChangeStep(2)}>
+        <Button
+          variant="outline"
+          onClick={() => onChangeStep(2)}
+          disabled={pending}
+        >
           Back
         </Button>
         <Button disabled={!accepted || pending} onClick={handlePayment}>
