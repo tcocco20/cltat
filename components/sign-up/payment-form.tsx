@@ -88,7 +88,7 @@ const PaymentForm = ({ onChangeStep, classId, cost }: PaymentFormProps) => {
     startTransition(async () => {
       if (!card && !customerInformation) return;
       const verificationDetails = {
-        amount: "10.00",
+        amount: cost.toFixed(2),
         billingContact: {
           givenName: customerInformation!.firstName,
           familyName: customerInformation!.lastName,
