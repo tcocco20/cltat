@@ -58,6 +58,7 @@ export const getClassByIdSimple = async (
   const response = await wordPressFetch<SimpleClassApiRequest>({
     query: singleClassApiQuery,
     variables: { id },
+    cache: "no-store",
   });
 
   return reshapeSimpleClass(response.body.data.class);

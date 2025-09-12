@@ -22,6 +22,7 @@ import { Label } from "../ui/label";
 import { formatPrice } from "@/lib/utils";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface PaymentFormProps {
   onChangeStep: (step: number) => void;
@@ -36,6 +37,7 @@ const PaymentForm = ({ onChangeStep, classId, cost }: PaymentFormProps) => {
   const [card, setCard] = useState<any>(null);
   const [accepted, setAccepted] = useState(false);
   const [pending, startTransition] = useTransition();
+  const router = useRouter();
 
   const customerInformation = useCustomerDetailsStore(
     (state) => state.customerInfo
@@ -122,7 +124,6 @@ const PaymentForm = ({ onChangeStep, classId, cost }: PaymentFormProps) => {
           });
 
           const data = await res.json();
-          // console.log("Data: ", data);
           if (data.success) {
             toast.success("Payment Successful! 🎉");
             const classRes = await fetch("/api/create-attendee", {
@@ -135,9 +136,17 @@ const PaymentForm = ({ onChangeStep, classId, cost }: PaymentFormProps) => {
                 }`,
                 email: customerInformation!.email,
                 photoId: customerIdentification!.photoId,
+                orderId: data.orderId,
+                paymentId: data.paymentId,
+                receiptUrl: data.receiptUrl,
               }),
             });
-            console.log(await classRes.json());
+            if (!classRes.ok) {
+              toast.error("Failed to create attendee ❌");
+              return;
+            }
+            const attendeeData = await classRes.json();
+            router.push(`/registration/${attendeeData.attendee.id}`);
           } else {
             toast.error("Payment Failed ❌");
           }
