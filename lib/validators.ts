@@ -26,7 +26,7 @@ export const userIdentificationSchema = z
     DPSST_PSID: z.string().optional(),
     photoId: z
       .number("photoId must be a number")
-      .min(1, "Photo ID must be positive"),
+      .min(1, "Photo ID is required"),
     sourceUrl: z.url(),
     height: z.number().optional(),
     width: z.number().optional(),
