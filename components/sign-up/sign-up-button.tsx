@@ -10,7 +10,7 @@ import {
 import SignUpSteps from "./sign-up-steps";
 import { useState } from "react";
 import CustomerInformationForm from "./customer-information-form";
-import CustomerIdentificationForm from "./customer-indentification-form";
+import CustomerIdentificationForm from "./customer-identification-form";
 import PaymentForm from "./payment-form";
 import SquareWrapper from "./square-wrapper";
 
