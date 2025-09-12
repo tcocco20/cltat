@@ -135,3 +135,37 @@ export const singleClassApiQuery = /* GraphQL */ `
     }
   }
 `;
+
+export const getAttendeeQuery = /* GraphQL */ `
+  query getAttendee($id: ID!) {
+    attendee(id: $id, idType: DATABASE_ID) {
+      attendeeInformation {
+        fullName
+        receiptUrl
+        paymentId
+        orderId
+        class {
+          ... on Class {
+            databaseId
+            classData {
+              totalSpots
+            }
+            classInformation {
+              classDateTime
+              classLocation
+              isRemote
+              description
+            }
+            classTypes {
+              edges {
+                node {
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

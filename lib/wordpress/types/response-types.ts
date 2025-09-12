@@ -1,4 +1,5 @@
 import {
+  AttendeeInformation,
   Connection,
   WordPressBlock,
   WordPressClass,
@@ -43,3 +44,7 @@ export type SimpleClassApiResponse = {
     totalSpots: number;
   };
 };
+
+export interface AttendeeResponse {
+  attendeeInformation: AttendeeInformation;
+}
