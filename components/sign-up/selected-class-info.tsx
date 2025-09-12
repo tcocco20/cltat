@@ -2,8 +2,8 @@ import React from "react";
 import { Card, CardContent } from "../ui/card";
 import { ClassData } from "@/lib/types";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import { formatPrice } from "@/lib/utils";
+import SignUpButton from "./sign-up-button";
 
 interface SelectedClassInfoProps {
   selectedClass: ClassData | null;
@@ -21,10 +21,6 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
     </div>
   );
 
-  const handleSignUp = () => {
-    // Set cookie with class ID so when user returns, the correct class is selected
-    document.cookie = `selectedClassId=${selectedClass!.id}; path=/`;
-  };
   return (
     <Card className="h-full flex flex-col justify-center">
       <CardContent>
@@ -72,9 +68,10 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
                 </>
               )}
             </div>
-            <Button className="w-full" asChild onClick={handleSignUp}>
-              <Link href={selectedClass.paymentLink}>Sign Up Now</Link>
-            </Button>
+            <SignUpButton
+              classId={selectedClass.id}
+              cost={selectedClass.cost}
+            />
           </div>
         ) : (
           noClassSelected

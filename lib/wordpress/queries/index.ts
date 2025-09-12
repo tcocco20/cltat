@@ -74,7 +74,6 @@ export const AllActiveClassesQuery = /* GraphQL */ `
               node {
                 paymentInformation {
                   cost
-                  paymentLink
                 }
                 name
                 slug
@@ -82,6 +81,55 @@ export const AllActiveClassesQuery = /* GraphQL */ `
             }
           }
           databaseId
+        }
+      }
+    }
+  }
+`;
+
+export const singleClassQuery = /* GraphQL */ `
+  query SingleClass($id: ID!) {
+    class(id: $id, idType: DATABASE_ID) {
+      classData {
+        spotsTaken
+        totalSpots
+      }
+      classInformation {
+        classLocation
+        description
+        isRemote
+        classDateTime
+      }
+      classTypes {
+        edges {
+          node {
+            paymentInformation {
+              cost
+            }
+            name
+            slug
+          }
+        }
+      }
+      databaseId
+    }
+  }
+`;
+
+export const singleClassApiQuery = /* GraphQL */ `
+  query SingleClass($id: ID!) {
+    class(id: $id, idType: DATABASE_ID) {
+      classData {
+        spotsTaken
+        totalSpots
+      }
+      classTypes {
+        edges {
+          node {
+            paymentInformation {
+              cost
+            }
+          }
         }
       }
     }
