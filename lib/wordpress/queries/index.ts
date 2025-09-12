@@ -139,6 +139,7 @@ export const singleClassApiQuery = /* GraphQL */ `
 export const getAttendeeQuery = /* GraphQL */ `
   query getAttendee($id: ID!) {
     attendee(id: $id, idType: DATABASE_ID) {
+      databaseId
       attendeeInformation {
         fullName
         receiptUrl
@@ -146,7 +147,6 @@ export const getAttendeeQuery = /* GraphQL */ `
         orderId
         class {
           ... on Class {
-            databaseId
             classData {
               totalSpots
             }
@@ -160,6 +160,9 @@ export const getAttendeeQuery = /* GraphQL */ `
               edges {
                 node {
                   name
+                  paymentInformation {
+                    cost
+                  }
                 }
               }
             }

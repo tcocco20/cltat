@@ -1,3 +1,4 @@
+import { getAttendeeById } from "@/lib/actions/wordpress.actions";
 import React from "react";
 
 const RegistrationDetailsPage = async (props: {
@@ -6,8 +7,11 @@ const RegistrationDetailsPage = async (props: {
   }>;
 }) => {
   const { attendeeId } = await props.params;
+  const attendeeData = await getAttendeeById(Number(attendeeId));
 
-  return <div className="mt-40">RegistrationDetailsPage: {attendeeId}</div>;
+  return (
+    <div className="mt-40">RegistrationDetailsPage: {attendeeData.id}</div>
+  );
 };
 
 export default RegistrationDetailsPage;

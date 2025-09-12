@@ -46,5 +46,6 @@ export type SimpleClassApiResponse = {
 };
 
 export interface AttendeeResponse {
+  databaseId: number;
   attendeeInformation: AttendeeInformation;
 }

@@ -1,9 +1,15 @@
 "use server";
 
-import { ClassData, ClassTypeSimple, SimpleClassData } from "../types";
+import {
+  AttendeeData,
+  ClassData,
+  ClassTypeSimple,
+  SimpleClassData,
+} from "../types";
 import { formatDateToMySQLDate } from "../utils";
 import {
   AllActiveClassesQuery,
+  getAttendeeQuery,
   simpleClassTypesQuery,
   singleClassApiQuery,
   singleMenuQuery,
@@ -12,12 +18,14 @@ import {
 import { PageRequest } from "../wordpress/types";
 import {
   AllActiveClassesRequest,
+  AttendeeRequest,
   MenuRequest,
   SimpleClassApiRequest,
   SimpleClassTypesRequest,
 } from "../wordpress/types/request-types";
 import {
   removeEdgesAndNodes,
+  reshapeAttendeeData,
   reshapeClasses,
   reshapeMenu,
   reshapePage,
@@ -74,4 +82,13 @@ export const getClassTypesSimple = async (): Promise<ClassTypeSimple[]> => {
 
 export const getClassTypes = async (): Promise<string[]> => {
   return [];
+};
+
+export const getAttendeeById = async (id: number): Promise<AttendeeData> => {
+  const response = await wordPressFetch<AttendeeRequest>({
+    query: getAttendeeQuery,
+    variables: { id },
+  });
+
+  return reshapeAttendeeData(response.body.data.attendee);
 };
