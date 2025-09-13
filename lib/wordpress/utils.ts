@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
 import {
+  AttendeeData,
   BlockData,
   ClassData,
   Menu,
@@ -14,7 +15,11 @@ import {
   WordPressClass,
   WordPressImage,
 } from "./types";
-import { MenuResponse, SimpleClassApiResponse } from "./types/response-types";
+import {
+  AttendeeResponse,
+  MenuResponse,
+  SimpleClassApiResponse,
+} from "./types/response-types";
 
 export function removeEdgesAndNodes<T>(array: Connection<T>): T[] {
   return array.edges.map((edge) => edge?.node);
@@ -89,6 +94,7 @@ export const reshapeSimpleClass = (
   return {
     spotsTaken: cls.classData.spotsTaken ?? 0,
     totalSpots: cls.classData.totalSpots,
+    date: new Date(cls.classInformation.classDateTime),
     cost: classTypeData.paymentInformation.cost,
   };
 };
@@ -97,4 +103,17 @@ export const reshapeClasses = (classes: WordPressClass[]): ClassData[] => {
   if (!classes || classes.length === 0) return [];
 
   return classes.map((cls) => reshapeClass(cls));
+};
+
+export const reshapeAttendeeData = (
+  attendee: AttendeeResponse
+): AttendeeData => {
+  return {
+    id: attendee.databaseId,
+    fullName: attendee.attendeeInformation.fullName,
+    receiptUrl: attendee.attendeeInformation.receiptUrl,
+    paymentId: attendee.attendeeInformation.paymentId,
+    orderId: attendee.attendeeInformation.orderId,
+    classData: reshapeClass(attendee.attendeeInformation.class),
+  };
 };

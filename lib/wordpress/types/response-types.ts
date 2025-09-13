@@ -1,4 +1,5 @@
 import {
+  AttendeeInformation,
   Connection,
   WordPressBlock,
   WordPressClass,
@@ -38,8 +39,16 @@ export type SimpleClassApiResponse = {
       }
     ];
   };
+  classInformation: {
+    classDateTime: string;
+  };
   classData: {
     spotsTaken: number | null;
     totalSpots: number;
   };
 };
+
+export interface AttendeeResponse {
+  databaseId: number;
+  attendeeInformation: AttendeeInformation;
+}

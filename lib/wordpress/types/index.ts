@@ -45,4 +45,12 @@ interface WordPressClassData {
   totalSpots: number;
 }
 
+export interface AttendeeInformation {
+  fullName: string;
+  receiptUrl: string;
+  paymentId: string;
+  orderId: string;
+  class: WordPressClass;
+}
+
 export type { Connection, ExtractVariables, PageRequest, PageResponse };

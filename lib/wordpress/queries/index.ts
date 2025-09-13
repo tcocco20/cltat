@@ -123,11 +123,52 @@ export const singleClassApiQuery = /* GraphQL */ `
         spotsTaken
         totalSpots
       }
+      classInformation {
+        classDateTime
+      }
       classTypes {
         edges {
           node {
             paymentInformation {
               cost
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getAttendeeQuery = /* GraphQL */ `
+  query getAttendee($id: ID!) {
+    attendee(id: $id, idType: DATABASE_ID) {
+      databaseId
+      attendeeInformation {
+        fullName
+        receiptUrl
+        paymentId
+        orderId
+        class {
+          ... on Class {
+            databaseId
+            classData {
+              totalSpots
+            }
+            classInformation {
+              classDateTime
+              classLocation
+              isRemote
+              description
+            }
+            classTypes {
+              edges {
+                node {
+                  name
+                  paymentInformation {
+                    cost
+                  }
+                }
+              }
             }
           }
         }

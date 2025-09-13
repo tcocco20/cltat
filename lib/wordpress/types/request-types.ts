@@ -1,5 +1,6 @@
 import {
   ActiveClassesResponse,
+  AttendeeResponse,
   MenuResponse,
   PageResponse,
   SimpleClassApiResponse,
@@ -42,6 +43,15 @@ export type AllActiveClassesRequest = {
 export type SimpleClassApiRequest = {
   data: {
     class: SimpleClassApiResponse;
+  };
+  variables: {
+    id: number;
+  };
+};
+
+export type AttendeeRequest = {
+  data: {
+    attendee: AttendeeResponse;
   };
   variables: {
     id: number;

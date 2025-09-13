@@ -49,6 +49,7 @@ export interface ClassTypeSimple {
 export interface SimpleClassData {
   spotsTaken: number;
   totalSpots: number;
+  date: Date;
   cost: number;
 }
 
@@ -56,3 +57,12 @@ export type CustomerInfo = z.infer<typeof userDetailsSchema>;
 export type CustomerIdentification = z.infer<typeof userIdentificationSchema>;
 
 export type CustomerDetails = CustomerInfo & CustomerIdentification;
+
+export interface AttendeeData {
+  id: number;
+  fullName: string;
+  receiptUrl: string;
+  paymentId: string;
+  orderId: string;
+  classData: ClassData;
+}
