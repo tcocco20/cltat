@@ -39,6 +39,9 @@ export type SimpleClassApiResponse = {
       }
     ];
   };
+  classInformation: {
+    classDateTime: string;
+  };
   classData: {
     spotsTaken: number | null;
     totalSpots: number;

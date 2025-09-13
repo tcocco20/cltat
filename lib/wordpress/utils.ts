@@ -94,6 +94,7 @@ export const reshapeSimpleClass = (
   return {
     spotsTaken: cls.classData.spotsTaken ?? 0,
     totalSpots: cls.classData.totalSpots,
+    date: new Date(cls.classInformation.classDateTime),
     cost: classTypeData.paymentInformation.cost,
   };
 };

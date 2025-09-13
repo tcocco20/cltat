@@ -123,6 +123,9 @@ export const singleClassApiQuery = /* GraphQL */ `
         spotsTaken
         totalSpots
       }
+      classInformation {
+        classDateTime
+      }
       classTypes {
         edges {
           node {
@@ -147,6 +150,7 @@ export const getAttendeeQuery = /* GraphQL */ `
         orderId
         class {
           ... on Class {
+            databaseId
             classData {
               totalSpots
             }

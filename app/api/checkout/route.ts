@@ -99,9 +99,7 @@ export async function POST(req: NextRequest) {
       //   amount: BigInt(100), // use to add $1.00 fee to checkout
       //   currency: "USD",
       // },
-      // buyerEmailAddress: buyerEmail, \
-      // buyerPhoneNumber: buyerPhone, -- May not need these, but will test them later to see how it shows up to customers
-      // note: `Class signup: ${title}`,/
+      // note: `Class signup: ${title}`, -- maybe test in prod to see what this would look like.
       verificationToken: verificationToken, // include if you run verifyBuyer on the client
     });
 

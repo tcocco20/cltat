@@ -49,6 +49,7 @@ export interface ClassTypeSimple {
 export interface SimpleClassData {
   spotsTaken: number;
   totalSpots: number;
+  date: Date;
   cost: number;
 }
 

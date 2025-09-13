@@ -1,3 +1,4 @@
+import CancelRegistrationButton from "@/components/registration/cancel-registration-button";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,7 +14,6 @@ import {
 } from "@/components/ui/tooltip";
 import { getAttendeeById } from "@/lib/actions/wordpress.actions";
 import Link from "next/link";
-import React from "react";
 
 const RegistrationDetailsPage = async (props: {
   params: Promise<{
@@ -87,9 +87,14 @@ const RegistrationDetailsPage = async (props: {
           )}
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="destructive" disabled={atLeast24Hours}>
+              <CancelRegistrationButton
+                atLeast24Hours={atLeast24Hours}
+                paymentId={attendeeData.paymentId}
+                classId={attendeeData.classData.id}
+                attendeeId={attendeeData.id}
+              >
                 Cancel Registration
-              </Button>
+              </CancelRegistrationButton>
             </TooltipTrigger>
             <TooltipContent>
               <p>
