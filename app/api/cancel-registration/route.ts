@@ -6,6 +6,7 @@ import {
   WP_USERNAME,
 } from "@/lib/constants";
 import { NextResponse } from "next/server";
+import { randomUUID } from "crypto";
 import { SquareClient, SquareEnvironment } from "square";
 
 export const runtime = "nodejs";
@@ -76,7 +77,7 @@ export async function POST(req: Request) {
     }
 
     // Refund API expects an idempotency key (unique string per request)
-    const idempotencyKey = crypto.randomUUID();
+    const idempotencyKey = randomUUID();
 
     const response = client.refunds.refundPayment({
       idempotencyKey,
