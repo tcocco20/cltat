@@ -11,7 +11,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function ClassTypesShowcaseSection() {
-  const classTypes = [
+  const fallbackClassTypes = [
     {
       slug: "mental-health-first-aid",
       type: "Mental Health and First Aid",
@@ -62,7 +62,7 @@ export default function ClassTypesShowcaseSection() {
       <h2 className="text-2xl font-bold my-4 self-start">Class Types</h2>
       <Tabs defaultValue="mental-health-first-aid" className="w-full">
         <TabsList className="w-full overflow-x-scroll no-scrollbar justify-start">
-          {classTypes.map((classType) => (
+          {fallbackClassTypes.map((classType) => (
             <TabsTrigger key={classType.slug} value={classType.slug}>
               {classType.type}
             </TabsTrigger>
@@ -71,7 +71,7 @@ export default function ClassTypesShowcaseSection() {
         <p className="text-foreground/80 text-sm mb-4">
           Scroll to see more options
         </p>
-        {classTypes.map((classType) => (
+        {fallbackClassTypes.map((classType) => (
           <TabsContent key={classType.slug} value={classType.slug}>
             <Card className="text-center md:space-y-4">
               <CardHeader className="md:space-y-2">
