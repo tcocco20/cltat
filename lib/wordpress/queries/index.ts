@@ -43,6 +43,23 @@ export const simpleClassTypesQuery = /* GraphQL */ `
   }
 `;
 
+export const allClassTypesQuery = /* GraphQL */ `
+  query AllClassTypes {
+    classTypes {
+      edges {
+        node {
+          name
+          slug
+          description
+          subtitle {
+            subtitle
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const AllActiveClassesQuery = /* GraphQL */ `
   query ActiveClassesQuery($today: String!) {
     classes(

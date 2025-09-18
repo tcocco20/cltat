@@ -24,10 +24,14 @@ export interface WordPressClass {
   databaseId: number;
 }
 
-interface WordPressClassType {
+export interface WordPressClassType {
   paymentInformation: WordPressPaymentInformation;
   name: string;
   slug: string;
+  description: string;
+  subtitle: {
+    subtitle: string;
+  };
 }
 interface WordPressPaymentInformation {
   cost: number;

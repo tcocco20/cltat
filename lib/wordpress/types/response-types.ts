@@ -3,6 +3,7 @@ import {
   Connection,
   WordPressBlock,
   WordPressClass,
+  WordPressClassType,
   WordPressImage,
 } from "@/lib/wordpress/types";
 
@@ -24,6 +25,8 @@ export type SimpleClassTypesResponse = Connection<{
   name: string;
   slug: string;
 }>;
+
+export type ClassTypesResponse = Connection<WordPressClassType>;
 
 export type ActiveClassesResponse = Connection<WordPressClass>;
 

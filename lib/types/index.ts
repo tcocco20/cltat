@@ -41,6 +41,13 @@ export interface ClassData {
   cost: number;
 }
 
+export interface ClassType {
+  name: string;
+  description: string;
+  subtitle: string;
+  slug: string;
+}
+
 export interface ClassTypeSimple {
   name: string;
   slug: string;

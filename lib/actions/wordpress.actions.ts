@@ -3,6 +3,7 @@
 import {
   AttendeeData,
   ClassData,
+  ClassType,
   ClassTypeSimple,
   SimpleClassData,
 } from "../types";
@@ -19,6 +20,7 @@ import { PageRequest } from "../wordpress/types";
 import {
   AllActiveClassesRequest,
   AttendeeRequest,
+  ClassTypesRequest,
   MenuRequest,
   SimpleClassApiRequest,
   SimpleClassTypesRequest,
@@ -27,6 +29,7 @@ import {
   removeEdgesAndNodes,
   reshapeAttendeeData,
   reshapeClasses,
+  reshapeClassTypes,
   reshapeMenu,
   reshapePage,
   reshapeSimpleClass,
@@ -80,8 +83,12 @@ export const getClassTypesSimple = async (): Promise<ClassTypeSimple[]> => {
   return removeEdgesAndNodes(response.body.data.classTypes);
 };
 
-export const getClassTypes = async (): Promise<string[]> => {
-  return [];
+export const getClassTypes = async (): Promise<ClassType[]> => {
+  const response = await wordPressFetch<ClassTypesRequest>({
+    query: simpleClassTypesQuery,
+  });
+
+  return reshapeClassTypes(removeEdgesAndNodes(response.body.data.classTypes));
 };
 
 export const getAttendeeById = async (id: number): Promise<AttendeeData> => {

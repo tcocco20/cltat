@@ -3,6 +3,7 @@ import {
   AttendeeData,
   BlockData,
   ClassData,
+  ClassType,
   Menu,
   PageData,
   SimpleClassData,
@@ -13,6 +14,7 @@ import {
   PageResponse,
   WordPressBlock,
   WordPressClass,
+  WordPressClassType,
   WordPressImage,
 } from "./types";
 import {
@@ -116,4 +118,17 @@ export const reshapeAttendeeData = (
     orderId: attendee.attendeeInformation.orderId,
     classData: reshapeClass(attendee.attendeeInformation.class),
   };
+};
+
+export const reshapeClassTypes = (
+  classTypes: WordPressClassType[]
+): ClassType[] => {
+  if (!classTypes || classTypes.length === 0) return [];
+
+  return classTypes.map((type) => ({
+    name: type.name,
+    description: type.description,
+    subtitle: type.subtitle.subtitle,
+    slug: type.slug,
+  }));
 };
