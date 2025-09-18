@@ -125,6 +125,8 @@ export const reshapeClassTypes = (
 ): ClassType[] => {
   if (!classTypes || classTypes.length === 0) return [];
 
+  console.log(classTypes);
+
   return classTypes.map((type) => ({
     name: type.name,
     description: type.description,

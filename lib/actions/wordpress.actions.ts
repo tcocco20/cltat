@@ -10,6 +10,7 @@ import {
 import { formatDateToMySQLDate } from "../utils";
 import {
   AllActiveClassesQuery,
+  allClassTypesQuery,
   getAttendeeQuery,
   simpleClassTypesQuery,
   singleClassApiQuery,
@@ -85,7 +86,7 @@ export const getClassTypesSimple = async (): Promise<ClassTypeSimple[]> => {
 
 export const getClassTypes = async (): Promise<ClassType[]> => {
   const response = await wordPressFetch<ClassTypesRequest>({
-    query: simpleClassTypesQuery,
+    query: allClassTypesQuery,
   });
 
   return reshapeClassTypes(removeEdgesAndNodes(response.body.data.classTypes));
