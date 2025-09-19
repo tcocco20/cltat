@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import RequestInfoButton from "../general/request-info-button";
 
 const HeroSection = () => {
   return (
@@ -19,9 +20,7 @@ const HeroSection = () => {
         <Button className="w-full md:w-auto" asChild>
           <Link href="/signup">Sign Up for Classes</Link>
         </Button>
-        <Button className="w-full md:w-auto" variant="outline">
-          Request More Information
-        </Button>
+        <RequestInfoButton>Request More Information</RequestInfoButton>
       </div>
     </section>
   );
