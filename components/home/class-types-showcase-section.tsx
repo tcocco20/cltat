@@ -46,7 +46,7 @@ export default function ClassTypesShowcaseSection({
   return (
     <section className="container flex mx-auto w-full max-w-5xl flex-col gap-4 items-center px-2 md:px-0">
       <h2 className="text-2xl font-bold my-4 self-start">Class Types</h2>
-      {classTypes.length > 1 ? (
+      {classTypes.length ? (
         <Tabs defaultValue={classTypes[0]?.slug} className="w-full">
           <TabsList className="w-full overflow-x-scroll no-scrollbar justify-start">
             {classTypes.map((classType) => (
