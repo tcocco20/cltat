@@ -5,8 +5,8 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import ClassButton from "./class-button";
-import { Button } from "../ui/button";
 import { ClassData, ClassTypeSimple } from "@/lib/types";
+import RequestInfoButton from "../general/request-info-button";
 
 interface ClassTypeSectionProps {
   classType: ClassTypeSimple;
@@ -30,9 +30,7 @@ const ClassTypeSection = ({
           free to contact us.
         </p>
       </div>
-      <Button variant="outline" className="w-full mb-4">
-        Contact Us
-      </Button>
+      <RequestInfoButton>Contact Us</RequestInfoButton>
     </>
   );
   return (

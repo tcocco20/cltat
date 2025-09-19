@@ -52,13 +52,13 @@ const RequestInfoButton = ({ children }: RequestInfoButtonProps) => {
             </Card>
           </Link>
           <Link
-            href="tel:+1234567890"
+            href="tel:+19169137117"
             className="flex-1 hover:scale-105 transition-transform duration-200"
           >
             <Card className="text-center">
               <CardHeader>
                 <CardTitle>Call Us</CardTitle>
-                <CardDescription>+1 (234) 567-890</CardDescription>
+                <CardDescription>+1 (916) 913-7117</CardDescription>
               </CardHeader>
               <CardContent className="flex justify-center">
                 <Phone className="h-12 w-12" />

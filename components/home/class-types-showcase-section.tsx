@@ -11,6 +11,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ClassType } from "@/lib/types";
 import Link from "next/link";
+import RequestInfoButton from "../general/request-info-button";
 
 interface ClassTypesShowcaseSectionProps {
   classTypes: ClassType[];
@@ -36,9 +37,7 @@ export default function ClassTypesShowcaseSection({
         </p>
       </CardContent>
       <CardFooter>
-        <Button size={"lg"} className="mx-auto">
-          Contact Us
-        </Button>
+        <RequestInfoButton>Contact Us</RequestInfoButton>
       </CardFooter>
     </Card>
   );
