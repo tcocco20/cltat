@@ -5,12 +5,14 @@ import {
   ClassData,
   ClassType,
   ClassTypeSimple,
+  InstructorData,
   SimpleClassData,
 } from "../types";
 import { formatDateToMySQLDate } from "../utils";
 import {
   AllActiveClassesQuery,
   allClassTypesQuery,
+  getAllInstructorsQuery,
   getAttendeeQuery,
   simpleClassTypesQuery,
   singleClassApiQuery,
@@ -22,6 +24,7 @@ import {
   AllActiveClassesRequest,
   AttendeeRequest,
   ClassTypesRequest,
+  InstructorsRequest,
   MenuRequest,
   SimpleClassApiRequest,
   SimpleClassTypesRequest,
@@ -31,6 +34,7 @@ import {
   reshapeAttendeeData,
   reshapeClasses,
   reshapeClassTypes,
+  reshapeInstructors,
   reshapeMenu,
   reshapePage,
   reshapeSimpleClass,
@@ -62,6 +66,16 @@ export const getActiveClasses = async (): Promise<ClassData[]> => {
   });
 
   return reshapeClasses(removeEdgesAndNodes(response.body.data.classes));
+};
+
+export const getAllInstructors = async (): Promise<InstructorData[]> => {
+  const response = await wordPressFetch<InstructorsRequest>({
+    query: getAllInstructorsQuery,
+  });
+
+  return reshapeInstructors(
+    removeEdgesAndNodes(response.body.data.instructors)
+  );
 };
 
 export const getClassByIdSimple = async (

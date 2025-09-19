@@ -57,4 +57,14 @@ export interface AttendeeInformation {
   class: WordPressClass;
 }
 
+export interface WordPressInstructor {
+  title: string;
+  featuredImage: {
+    node: WordPressImage;
+  };
+  instructorBio: {
+    instructorBio: string;
+  };
+}
+
 export type { Connection, ExtractVariables, PageRequest, PageResponse };

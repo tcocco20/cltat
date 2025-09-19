@@ -5,6 +5,7 @@ import {
   WordPressClass,
   WordPressClassType,
   WordPressImage,
+  WordPressInstructor,
 } from "@/lib/wordpress/types";
 
 export interface PageResponse {
@@ -55,3 +56,5 @@ export interface AttendeeResponse {
   databaseId: number;
   attendeeInformation: AttendeeInformation;
 }
+
+export type InstructorsResponse = Connection<WordPressInstructor>;

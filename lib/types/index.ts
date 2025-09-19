@@ -73,3 +73,9 @@ export interface AttendeeData {
   orderId: string;
   classData: ClassData;
 }
+
+export interface InstructorData {
+  name: string;
+  bio: string;
+  image: WPImage | null;
+}

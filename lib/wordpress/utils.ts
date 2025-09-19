@@ -4,6 +4,7 @@ import {
   BlockData,
   ClassData,
   ClassType,
+  InstructorData,
   Menu,
   PageData,
   SimpleClassData,
@@ -16,6 +17,7 @@ import {
   WordPressClass,
   WordPressClassType,
   WordPressImage,
+  WordPressInstructor,
 } from "./types";
 import {
   AttendeeResponse,
@@ -132,5 +134,17 @@ export const reshapeClassTypes = (
     description: type.description,
     subtitle: type.subtitle.subtitle,
     slug: type.slug,
+  }));
+};
+
+export const reshapeInstructors = (
+  instructors: WordPressInstructor[]
+): InstructorData[] => {
+  if (!instructors || instructors.length === 0) return [];
+
+  return instructors.map((instructor) => ({
+    name: instructor.title,
+    bio: instructor.instructorBio.instructorBio,
+    image: reshapeImage(instructor.featuredImage.node),
   }));
 };

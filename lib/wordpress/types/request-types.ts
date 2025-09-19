@@ -2,6 +2,7 @@ import {
   ActiveClassesResponse,
   AttendeeResponse,
   ClassTypesResponse,
+  InstructorsResponse,
   MenuResponse,
   PageResponse,
   SimpleClassApiResponse,
@@ -31,6 +32,13 @@ export type SimpleClassTypesRequest = {
     classTypes: SimpleClassTypesResponse;
   };
 };
+
+export type InstructorsRequest = {
+  data: {
+    instructors: InstructorsResponse;
+  };
+};
+
 export type ClassTypesRequest = {
   data: {
     classTypes: ClassTypesResponse;

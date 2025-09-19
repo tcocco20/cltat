@@ -15,6 +15,27 @@ export const singlePageQuery = /* GraphQL */ `
   ${imageFragment}
 `;
 
+export const getAllInstructorsQuery = /* GraphQL */ `
+  query AllInstructors {
+    instructors {
+      edges {
+        node {
+          title
+          featuredImage {
+            node {
+              ...Image
+            }
+          }
+          instructorBio {
+            instructorBio
+          }
+        }
+      }
+    }
+  }
+  ${imageFragment}
+`;
+
 export const singleMenuQuery = /* GraphQL */ `
   query NewQuery($slug: ID!) {
     menu(id: $slug, idType: SLUG) {
