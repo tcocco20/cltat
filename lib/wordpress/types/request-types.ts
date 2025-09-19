@@ -3,6 +3,7 @@ import {
   AttendeeResponse,
   ClassTypesResponse,
   InstructorsResponse,
+  LicensesResponse,
   MenuResponse,
   PageResponse,
   SimpleClassApiResponse,
@@ -36,6 +37,12 @@ export type SimpleClassTypesRequest = {
 export type InstructorsRequest = {
   data: {
     instructors: InstructorsResponse;
+  };
+};
+
+export type LicensesRequest = {
+  data: {
+    licenses: LicensesResponse;
   };
 };
 

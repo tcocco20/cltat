@@ -8,9 +8,10 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { LicenseData } from "@/lib/types";
 
 interface ShowLicenseButtonProps {
-  licenses: { title: string; pdf: string | null; slug: string }[];
+  licenses: LicenseData[];
 }
 
 const ShowLicenseButton = ({ licenses }: ShowLicenseButtonProps) => {
@@ -33,7 +34,7 @@ const ShowLicenseButton = ({ licenses }: ShowLicenseButtonProps) => {
             <hr className="border-black" />
           </DialogHeader>
           {licenses.length ? (
-            <Tabs>
+            <Tabs defaultValue={licenses[0].slug}>
               <TabsList className="p-2">
                 {licenses.map((license) => (
                   <TabsTrigger key={license.slug} value={license.slug}>
@@ -43,9 +44,9 @@ const ShowLicenseButton = ({ licenses }: ShowLicenseButtonProps) => {
               </TabsList>
               {licenses.map((license) => (
                 <TabsContent key={license.slug} value={license.slug}>
-                  {license.pdf ? (
+                  {license.mediaItemUrl ? (
                     <iframe
-                      src={license.pdf}
+                      src={license.mediaItemUrl}
                       title={license.title}
                       className="w-full h-[70vh] border rounded"
                     />

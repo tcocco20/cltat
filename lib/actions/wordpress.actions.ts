@@ -6,6 +6,7 @@ import {
   ClassType,
   ClassTypeSimple,
   InstructorData,
+  LicenseData,
   SimpleClassData,
 } from "../types";
 import { formatDateToMySQLDate } from "../utils";
@@ -14,6 +15,7 @@ import {
   allClassTypesQuery,
   getAllInstructorsQuery,
   getAttendeeQuery,
+  getLicensesQuery,
   simpleClassTypesQuery,
   singleClassApiQuery,
   singleMenuQuery,
@@ -25,6 +27,7 @@ import {
   AttendeeRequest,
   ClassTypesRequest,
   InstructorsRequest,
+  LicensesRequest,
   MenuRequest,
   SimpleClassApiRequest,
   SimpleClassTypesRequest,
@@ -35,6 +38,7 @@ import {
   reshapeClasses,
   reshapeClassTypes,
   reshapeInstructors,
+  reshapeLicenses,
   reshapeMenu,
   reshapePage,
   reshapeSimpleClass,
@@ -76,6 +80,14 @@ export const getAllInstructors = async (): Promise<InstructorData[]> => {
   return reshapeInstructors(
     removeEdgesAndNodes(response.body.data.instructors)
   );
+};
+
+export const getAllLicenses = async (): Promise<LicenseData[]> => {
+  const response = await wordPressFetch<LicensesRequest>({
+    query: getLicensesQuery,
+  });
+
+  return reshapeLicenses(removeEdgesAndNodes(response.body.data.licenses));
 };
 
 export const getClassByIdSimple = async (

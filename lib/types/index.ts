@@ -79,3 +79,10 @@ export interface InstructorData {
   bio: string;
   image: WPImage | null;
 }
+
+export interface LicenseData {
+  title: string;
+  slug: string;
+  mediaItemUrl: string;
+  fileName: string;
+}

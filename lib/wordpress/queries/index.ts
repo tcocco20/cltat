@@ -214,3 +214,22 @@ export const getAttendeeQuery = /* GraphQL */ `
     }
   }
 `;
+
+export const getLicensesQuery = /* GraphQL */ `
+  query GetLicenses {
+    licenses {
+      edges {
+        node {
+          title
+          slug
+          licenseFile {
+            file {
+              mediaItemUrl
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+`;

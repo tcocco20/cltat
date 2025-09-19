@@ -1,13 +1,17 @@
-import { InstructorData } from "@/lib/types";
+import { InstructorData, LicenseData } from "@/lib/types";
 import InstructorCard from "./instructor-card";
 import InstructorCarousel from "./instructor-carousel";
 import ShowLicenseButton from "./show-license-button";
 
 interface InstructorInfoSectionProps {
   instructors: InstructorData[];
+  licenses: LicenseData[];
 }
 
-const InstructorInfoSection = ({ instructors }: InstructorInfoSectionProps) => {
+const InstructorInfoSection = ({
+  instructors,
+  licenses,
+}: InstructorInfoSectionProps) => {
   return (
     <section className="container max-w-5xl mx-auto px-2 md:px-0">
       <h2 className="text-2xl font-bold my-4">
@@ -20,7 +24,7 @@ const InstructorInfoSection = ({ instructors }: InstructorInfoSectionProps) => {
           <InstructorCard instructor={instructors[0]} />
         )}
         <div className="flex flex-col md:flex-row items-center gap-4 flex-1">
-          <ShowLicenseButton licenses={[]} />
+          <ShowLicenseButton licenses={licenses} />
           <p className="flex-1">
             Click here to view certifications and licenses. All licensing
             attained in the state of Oregon.

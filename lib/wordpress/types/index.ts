@@ -67,4 +67,15 @@ export interface WordPressInstructor {
   };
 }
 
+export interface WordPressLicense {
+  title: string;
+  slug: string;
+  licenseFile: {
+    file: {
+      mediaItemUrl: string;
+      title: string;
+    };
+  };
+}
+
 export type { Connection, ExtractVariables, PageRequest, PageResponse };

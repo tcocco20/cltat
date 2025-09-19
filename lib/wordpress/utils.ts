@@ -5,6 +5,7 @@ import {
   ClassData,
   ClassType,
   InstructorData,
+  LicenseData,
   Menu,
   PageData,
   SimpleClassData,
@@ -18,6 +19,7 @@ import {
   WordPressClassType,
   WordPressImage,
   WordPressInstructor,
+  WordPressLicense,
 } from "./types";
 import {
   AttendeeResponse,
@@ -146,5 +148,18 @@ export const reshapeInstructors = (
     name: instructor.title,
     bio: instructor.instructorBio.instructorBio,
     image: reshapeImage(instructor.featuredImage.node),
+  }));
+};
+
+export const reshapeLicenses = (
+  licenses: WordPressLicense[]
+): LicenseData[] => {
+  if (!licenses || licenses.length === 0) return [];
+
+  return licenses.map((license) => ({
+    title: license.title,
+    slug: license.slug,
+    mediaItemUrl: license.licenseFile.file.mediaItemUrl,
+    fileName: license.licenseFile.file.title,
   }));
 };

@@ -6,6 +6,7 @@ import {
   WordPressClassType,
   WordPressImage,
   WordPressInstructor,
+  WordPressLicense,
 } from "@/lib/wordpress/types";
 
 export interface PageResponse {
@@ -58,3 +59,4 @@ export interface AttendeeResponse {
 }
 
 export type InstructorsResponse = Connection<WordPressInstructor>;
+export type LicensesResponse = Connection<WordPressLicense>;
