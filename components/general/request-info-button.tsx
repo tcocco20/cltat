@@ -44,7 +44,7 @@ const RequestInfoButton = ({ children }: RequestInfoButtonProps) => {
             <Card className="text-center">
               <CardHeader>
                 <CardTitle>Email Us</CardTitle>
-                <CardDescription>cltraining.or@gmail</CardDescription>
+                <CardDescription>cltraining.or@gmail.com</CardDescription>
               </CardHeader>
               <CardContent className="flex justify-center">
                 <Mail className="h-12 w-12" />

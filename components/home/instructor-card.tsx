@@ -16,7 +16,7 @@ const InstructorCard = ({ instructor }: InstructorCardProps) => {
             alt={instructor.image?.altText || "Image of " + instructor.name}
             width={instructor.image.width}
             height={instructor.image.height}
-            className="w-24 h-24 rounded-full object-center object-fill"
+            className="w-24 h-24 rounded-full object-center object-cover"
           />
         ) : (
           <div className="w-24 h-24 rounded-full bg-blue-300 flex items-center justify-center">
