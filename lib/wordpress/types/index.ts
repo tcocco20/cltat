@@ -61,7 +61,7 @@ export interface WordPressInstructor {
   title: string;
   featuredImage: {
     node: WordPressImage;
-  };
+  } | null;
   instructorBio: {
     instructorBio: string;
   };

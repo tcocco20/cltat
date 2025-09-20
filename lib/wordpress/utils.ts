@@ -129,8 +129,6 @@ export const reshapeClassTypes = (
 ): ClassType[] => {
   if (!classTypes || classTypes.length === 0) return [];
 
-  console.log(classTypes);
-
   return classTypes.map((type) => ({
     name: type.name,
     description: type.description,
@@ -147,7 +145,9 @@ export const reshapeInstructors = (
   return instructors.map((instructor) => ({
     name: instructor.title,
     bio: instructor.instructorBio.instructorBio,
-    image: reshapeImage(instructor.featuredImage.node),
+    image: reshapeImage(
+      instructor.featuredImage ? instructor.featuredImage.node : null
+    ),
   }));
 };
 
