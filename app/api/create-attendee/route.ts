@@ -13,6 +13,10 @@ export async function POST(req: NextRequest) {
       orderId,
       paymentId,
       receiptUrl,
+      dateOfBirth,
+      DPSST_PSID,
+      physicalAddress,
+      phoneNumber,
     } = await req.json();
 
     const auth = Buffer.from(`${WP_USERNAME}:${WP_APP_PASSWORD}`).toString(
@@ -43,6 +47,10 @@ export async function POST(req: NextRequest) {
           order_id: orderId,
           payment_id: paymentId,
           receipt_url: receiptUrl,
+          dob: dateOfBirth,
+          dpsst_psid: DPSST_PSID,
+          address: physicalAddress,
+          phone_number: phoneNumber,
         },
       }),
     });

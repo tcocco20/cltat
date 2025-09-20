@@ -12,12 +12,14 @@ interface ClassTypeSectionProps {
   classType: ClassTypeSimple;
   classes?: ClassData[];
   onSelectClass: (classId: number) => void;
+  selectedClass?: ClassData | null;
 }
 
 const ClassTypeSection = ({
   classType,
   classes,
   onSelectClass,
+  selectedClass,
 }: ClassTypeSectionProps) => {
   const emptyContent = (
     <>
@@ -40,6 +42,7 @@ const ClassTypeSection = ({
         {classes?.length
           ? classes.map((classData) => (
               <ClassButton
+                selected={selectedClass?.id === classData.id}
                 key={classData.id}
                 date={classData.date.toDateString()}
                 spotsAvailable={classData.totalSpots - classData.spotsTaken}

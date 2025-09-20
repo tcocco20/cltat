@@ -92,9 +92,7 @@ const RegistrationDetailsPage = async (props: {
                 paymentId={attendeeData.paymentId}
                 classId={attendeeData.classData.id}
                 attendeeId={attendeeData.id}
-              >
-                Cancel Registration
-              </CancelRegistrationButton>
+              />
             </TooltipTrigger>
             <TooltipContent>
               <p>

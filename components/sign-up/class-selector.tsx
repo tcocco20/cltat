@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { Button } from "../ui/button";
 import RequestInfoButton from "../general/request-info-button";
 
 interface ClassSelectorProps {
@@ -50,6 +49,7 @@ const ClassSelector = ({ classes, classTypes }: ClassSelectorProps) => {
         <>
           <div className="md:col-span-2">
             <ClassesDisplay
+              selectedClass={selectedClass}
               onSelectClass={handleSelectClass}
               classTypes={classTypes}
               classes={classes}

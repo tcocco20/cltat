@@ -19,7 +19,11 @@ import {
 } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
-import { formatPrice } from "@/lib/utils";
+import {
+  formatDateToMySQLDate,
+  formatPhysicalAddress,
+  formatPrice,
+} from "@/lib/utils";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -135,6 +139,18 @@ const PaymentForm = ({ onChangeStep, classId, cost }: PaymentFormProps) => {
                   customerInformation!.lastName
                 }`,
                 email: customerInformation!.email,
+                phoneNumber: customerInformation!.phone,
+                DPSST_PSID: customerIdentification!.DPSST_PSID,
+                physicalAddress: formatPhysicalAddress(
+                  customerInformation!.addressLineOne,
+                  customerInformation!.addressLineTwo,
+                  customerInformation!.city,
+                  customerInformation!.state,
+                  customerInformation!.countryCode
+                ),
+                dateOfBirth: formatDateToMySQLDate(
+                  customerIdentification!.dateOfBirth
+                ),
                 photoId: customerIdentification!.photoId,
                 orderId: data.orderId,
                 paymentId: data.paymentId,

@@ -17,9 +17,14 @@ import SquareWrapper from "./square-wrapper";
 interface SignUpButtonProps {
   classId: number;
   cost: number;
+  isDisabled: boolean;
 }
 
-export default function SignUpButton({ classId, cost }: SignUpButtonProps) {
+export default function SignUpButton({
+  classId,
+  cost,
+  isDisabled,
+}: SignUpButtonProps) {
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleChangeStep = (step: number) => {
@@ -29,7 +34,9 @@ export default function SignUpButton({ classId, cost }: SignUpButtonProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-full">Sign Up For Class</Button>
+        <Button className="w-full" disabled={isDisabled}>
+          Sign Up For Class
+        </Button>
       </DialogTrigger>
       <DialogContent className="w-full sm:max-w-[700px] overflow-y-auto max-h-dvh md:max-h-[90dvh]">
         <DialogHeader>
