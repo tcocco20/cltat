@@ -1,6 +1,9 @@
 import {
   ActiveClassesResponse,
   AttendeeResponse,
+  ClassTypesResponse,
+  InstructorsResponse,
+  LicensesResponse,
   MenuResponse,
   PageResponse,
   SimpleClassApiResponse,
@@ -28,6 +31,24 @@ export type MenuRequest = {
 export type SimpleClassTypesRequest = {
   data: {
     classTypes: SimpleClassTypesResponse;
+  };
+};
+
+export type InstructorsRequest = {
+  data: {
+    instructors: InstructorsResponse;
+  };
+};
+
+export type LicensesRequest = {
+  data: {
+    licenses: LicensesResponse;
+  };
+};
+
+export type ClassTypesRequest = {
+  data: {
+    classTypes: ClassTypesResponse;
   };
 };
 

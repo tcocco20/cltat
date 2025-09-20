@@ -41,6 +41,13 @@ export interface ClassData {
   cost: number;
 }
 
+export interface ClassType {
+  name: string;
+  description: string;
+  subtitle: string;
+  slug: string;
+}
+
 export interface ClassTypeSimple {
   name: string;
   slug: string;
@@ -65,4 +72,17 @@ export interface AttendeeData {
   paymentId: string;
   orderId: string;
   classData: ClassData;
+}
+
+export interface InstructorData {
+  name: string;
+  bio: string;
+  image: WPImage | null;
+}
+
+export interface LicenseData {
+  title: string;
+  slug: string;
+  mediaItemUrl: string;
+  fileName: string;
 }

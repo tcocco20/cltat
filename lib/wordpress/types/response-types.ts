@@ -3,7 +3,10 @@ import {
   Connection,
   WordPressBlock,
   WordPressClass,
+  WordPressClassType,
   WordPressImage,
+  WordPressInstructor,
+  WordPressLicense,
 } from "@/lib/wordpress/types";
 
 export interface PageResponse {
@@ -24,6 +27,8 @@ export type SimpleClassTypesResponse = Connection<{
   name: string;
   slug: string;
 }>;
+
+export type ClassTypesResponse = Connection<WordPressClassType>;
 
 export type ActiveClassesResponse = Connection<WordPressClass>;
 
@@ -52,3 +57,6 @@ export interface AttendeeResponse {
   databaseId: number;
   attendeeInformation: AttendeeInformation;
 }
+
+export type InstructorsResponse = Connection<WordPressInstructor>;
+export type LicensesResponse = Connection<WordPressLicense>;

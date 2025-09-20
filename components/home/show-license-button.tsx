@@ -8,27 +8,33 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { LicenseData } from "@/lib/types";
 
 interface ShowLicenseButtonProps {
-  licenses: { title: string; pdf: string | null; slug: string }[];
+  licenses: LicenseData[];
 }
 
 const ShowLicenseButton = ({ licenses }: ShowLicenseButtonProps) => {
   return (
-    <div className="w-28 h-28 rounded-full bg-emerald-300 flex items-center justify-center cursor-pointer">
+    <div className="flex items-center justify-center cursor-pointer">
       <Dialog>
-        <DialogTrigger asChild>
-          <div className="w-28 h-28 rounded-full bg-emerald-300 flex items-center justify-center cursor-pointer">
-            <File height={48} width={48} />
-          </div>
-        </DialogTrigger>
+        <div className="flex flex-col items-center">
+          <DialogTrigger asChild>
+            <div className="w-24 h-24 rounded-full bg-emerald-300 flex items-center justify-center cursor-pointer">
+              <File height={48} width={48} />
+            </div>
+          </DialogTrigger>
+          <h3 className="text-center text-xl font-semibold whitespace-nowrap">
+            View Licenses
+          </h3>
+        </div>
         <DialogContent className="w-full max-w-6xl!">
           <DialogHeader>
             <DialogTitle>View licenses and certifications</DialogTitle>
             <hr className="border-black" />
           </DialogHeader>
           {licenses.length ? (
-            <Tabs>
+            <Tabs defaultValue={licenses[0].slug}>
               <TabsList className="p-2">
                 {licenses.map((license) => (
                   <TabsTrigger key={license.slug} value={license.slug}>
@@ -38,9 +44,9 @@ const ShowLicenseButton = ({ licenses }: ShowLicenseButtonProps) => {
               </TabsList>
               {licenses.map((license) => (
                 <TabsContent key={license.slug} value={license.slug}>
-                  {license.pdf ? (
+                  {license.mediaItemUrl ? (
                     <iframe
-                      src={license.pdf}
+                      src={license.mediaItemUrl}
                       title={license.title}
                       className="w-full h-[70vh] border rounded"
                     />
@@ -61,7 +67,9 @@ const ShowLicenseButton = ({ licenses }: ShowLicenseButtonProps) => {
             </Tabs>
           ) : (
             <div className="p-4">
-              <h2 className="text-2xl font-medium">License Data Coming Soon!</h2>
+              <h2 className="text-2xl font-medium">
+                License Data Coming Soon!
+              </h2>
               <p>
                 There are no licenses or certifications available for viewing at
                 this time. Please check back later or contact us for more

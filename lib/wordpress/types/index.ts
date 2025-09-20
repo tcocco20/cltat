@@ -24,10 +24,14 @@ export interface WordPressClass {
   databaseId: number;
 }
 
-interface WordPressClassType {
+export interface WordPressClassType {
   paymentInformation: WordPressPaymentInformation;
   name: string;
   slug: string;
+  description: string;
+  subtitle: {
+    subtitle: string;
+  };
 }
 interface WordPressPaymentInformation {
   cost: number;
@@ -51,6 +55,27 @@ export interface AttendeeInformation {
   paymentId: string;
   orderId: string;
   class: WordPressClass;
+}
+
+export interface WordPressInstructor {
+  title: string;
+  featuredImage: {
+    node: WordPressImage;
+  } | null;
+  instructorBio: {
+    instructorBio: string;
+  };
+}
+
+export interface WordPressLicense {
+  title: string;
+  slug: string;
+  licenseFile: {
+    file: {
+      mediaItemUrl: string;
+      title: string;
+    };
+  };
 }
 
 export type { Connection, ExtractVariables, PageRequest, PageResponse };

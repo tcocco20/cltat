@@ -69,6 +69,9 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
               )}
             </div>
             <SignUpButton
+              isDisabled={
+                selectedClass.totalSpots - selectedClass.spotsTaken === 0
+              }
               classId={selectedClass.id}
               cost={selectedClass.cost}
             />

@@ -3,6 +3,9 @@ import {
   AttendeeData,
   BlockData,
   ClassData,
+  ClassType,
+  InstructorData,
+  LicenseData,
   Menu,
   PageData,
   SimpleClassData,
@@ -13,7 +16,10 @@ import {
   PageResponse,
   WordPressBlock,
   WordPressClass,
+  WordPressClassType,
   WordPressImage,
+  WordPressInstructor,
+  WordPressLicense,
 } from "./types";
 import {
   AttendeeResponse,
@@ -116,4 +122,44 @@ export const reshapeAttendeeData = (
     orderId: attendee.attendeeInformation.orderId,
     classData: reshapeClass(attendee.attendeeInformation.class),
   };
+};
+
+export const reshapeClassTypes = (
+  classTypes: WordPressClassType[]
+): ClassType[] => {
+  if (!classTypes || classTypes.length === 0) return [];
+
+  return classTypes.map((type) => ({
+    name: type.name,
+    description: type.description,
+    subtitle: type.subtitle.subtitle,
+    slug: type.slug,
+  }));
+};
+
+export const reshapeInstructors = (
+  instructors: WordPressInstructor[]
+): InstructorData[] => {
+  if (!instructors || instructors.length === 0) return [];
+
+  return instructors.map((instructor) => ({
+    name: instructor.title,
+    bio: instructor.instructorBio.instructorBio,
+    image: reshapeImage(
+      instructor.featuredImage ? instructor.featuredImage.node : null
+    ),
+  }));
+};
+
+export const reshapeLicenses = (
+  licenses: WordPressLicense[]
+): LicenseData[] => {
+  if (!licenses || licenses.length === 0) return [];
+
+  return licenses.map((license) => ({
+    title: license.title,
+    slug: license.slug,
+    mediaItemUrl: license.licenseFile.file.mediaItemUrl,
+    fileName: license.licenseFile.file.title,
+  }));
 };

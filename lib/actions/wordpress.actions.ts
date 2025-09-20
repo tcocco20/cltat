@@ -3,13 +3,19 @@
 import {
   AttendeeData,
   ClassData,
+  ClassType,
   ClassTypeSimple,
+  InstructorData,
+  LicenseData,
   SimpleClassData,
 } from "../types";
 import { formatDateToMySQLDate } from "../utils";
 import {
   AllActiveClassesQuery,
+  allClassTypesQuery,
+  getAllInstructorsQuery,
   getAttendeeQuery,
+  getLicensesQuery,
   simpleClassTypesQuery,
   singleClassApiQuery,
   singleMenuQuery,
@@ -19,6 +25,9 @@ import { PageRequest } from "../wordpress/types";
 import {
   AllActiveClassesRequest,
   AttendeeRequest,
+  ClassTypesRequest,
+  InstructorsRequest,
+  LicensesRequest,
   MenuRequest,
   SimpleClassApiRequest,
   SimpleClassTypesRequest,
@@ -27,6 +36,9 @@ import {
   removeEdgesAndNodes,
   reshapeAttendeeData,
   reshapeClasses,
+  reshapeClassTypes,
+  reshapeInstructors,
+  reshapeLicenses,
   reshapeMenu,
   reshapePage,
   reshapeSimpleClass,
@@ -60,6 +72,24 @@ export const getActiveClasses = async (): Promise<ClassData[]> => {
   return reshapeClasses(removeEdgesAndNodes(response.body.data.classes));
 };
 
+export const getAllInstructors = async (): Promise<InstructorData[]> => {
+  const response = await wordPressFetch<InstructorsRequest>({
+    query: getAllInstructorsQuery,
+  });
+
+  return reshapeInstructors(
+    removeEdgesAndNodes(response.body.data.instructors)
+  );
+};
+
+export const getAllLicenses = async (): Promise<LicenseData[]> => {
+  const response = await wordPressFetch<LicensesRequest>({
+    query: getLicensesQuery,
+  });
+
+  return reshapeLicenses(removeEdgesAndNodes(response.body.data.licenses));
+};
+
 export const getClassByIdSimple = async (
   id: number
 ): Promise<SimpleClassData> => {
@@ -80,8 +110,12 @@ export const getClassTypesSimple = async (): Promise<ClassTypeSimple[]> => {
   return removeEdgesAndNodes(response.body.data.classTypes);
 };
 
-export const getClassTypes = async (): Promise<string[]> => {
-  return [];
+export const getClassTypes = async (): Promise<ClassType[]> => {
+  const response = await wordPressFetch<ClassTypesRequest>({
+    query: allClassTypesQuery,
+  });
+
+  return reshapeClassTypes(removeEdgesAndNodes(response.body.data.classTypes));
 };
 
 export const getAttendeeById = async (id: number): Promise<AttendeeData> => {

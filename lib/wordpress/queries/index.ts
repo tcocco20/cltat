@@ -15,6 +15,27 @@ export const singlePageQuery = /* GraphQL */ `
   ${imageFragment}
 `;
 
+export const getAllInstructorsQuery = /* GraphQL */ `
+  query AllInstructors {
+    instructors {
+      edges {
+        node {
+          title
+          featuredImage {
+            node {
+              ...Image
+            }
+          }
+          instructorBio {
+            instructorBio
+          }
+        }
+      }
+    }
+  }
+  ${imageFragment}
+`;
+
 export const singleMenuQuery = /* GraphQL */ `
   query NewQuery($slug: ID!) {
     menu(id: $slug, idType: SLUG) {
@@ -37,6 +58,23 @@ export const simpleClassTypesQuery = /* GraphQL */ `
         node {
           name
           slug
+        }
+      }
+    }
+  }
+`;
+
+export const allClassTypesQuery = /* GraphQL */ `
+  query AllClassTypes {
+    classTypes {
+      edges {
+        node {
+          name
+          slug
+          description
+          subtitle {
+            subtitle
+          }
         }
       }
     }
@@ -169,6 +207,25 @@ export const getAttendeeQuery = /* GraphQL */ `
                   }
                 }
               }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getLicensesQuery = /* GraphQL */ `
+  query GetLicenses {
+    licenses {
+      edges {
+        node {
+          title
+          slug
+          licenseFile {
+            file {
+              mediaItemUrl
+              title
             }
           }
         }

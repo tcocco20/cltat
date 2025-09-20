@@ -24,3 +24,15 @@ export function formatPrice(price: number): string {
     currency: "USD",
   }).format(price);
 }
+
+export function formatPhysicalAddress(
+  addressLine1: string,
+  addressLine2: string | undefined,
+  city: string,
+  state: string,
+  countryCode: string
+): string {
+  return `${addressLine1}${
+    addressLine2 ? ", " + addressLine2 : ""
+  }, ${city}, ${state}, ${countryCode}`;
+}

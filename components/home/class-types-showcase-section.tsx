@@ -9,87 +9,78 @@ import {
 } from "@/components/ui/card";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ClassType } from "@/lib/types";
+import Link from "next/link";
+import RequestInfoButton from "../general/request-info-button";
 
-export default function ClassTypesShowcaseSection() {
-  const classTypes = [
-    {
-      slug: "mental-health-first-aid",
-      type: "Mental Health and First Aid",
-      description:
-        "Learn how to handle mental health crises and provide first aid.",
-      information:
-        "This course covers the basics of mental health first aid, including how to recognize and respond to mental health crises. Classes typically run about 8 hours and may be in person or remote.",
-    },
-    {
-      slug: "armed-security",
-      type: "Armed Security",
-      description: "Learn the skills necessary to work in armed security.",
-      information:
-        "This course provides an overview of the skills and knowledge required for a career in armed security. Classes typically run about 8 hours and must be in person at a shooting range.",
-    },
-    {
-      slug: "unarmed-security",
-      type: "Unarmed Security",
-      description: "Learn the skills necessary to work in unarmed security.",
-      information:
-        "This course provides an overview of the skills and knowledge required for a career in unarmed security. Classes typically run about 8 hours and may be in person or remote.",
-    },
-    {
-      slug: "armed-security-refresher",
-      type: "Armed Security Refresher",
-      description: "Refresh your knowledge and skills in armed security.",
-      information:
-        "This course is designed for individuals who have previously completed an armed security training program and need to refresh their knowledge and skills. Classes typically run about 4 hours and must be in person at a shooting range.",
-    },
-    {
-      slug: "unarmed-security-refresher",
-      type: "Unarmed Security Refresher",
-      description: "Refresh your knowledge and skills in unarmed security.",
-      information:
-        "This course is designed for individuals who have previously completed an unarmed security training program and need to refresh their knowledge and skills. Classes typically run about 4 hours and may be in person or remote.",
-    },
-    {
-      slug: "asp",
-      type: "ASP",
-      description:
-        "Learn about the ASP (Advanced Security Professional) certification.",
-      information:
-        "This course provides an overview of the skills and knowledge required for the ASP certification. Classes typically run about 8 hours and may be in person or remote.",
-    },
-  ];
-  return (
-    <section className="flex mx-auto w-full max-w-3xl flex-col gap-4 items-center px-2 md:px-0">
-      <h2 className="text-2xl font-bold my-4 self-start">Class Types</h2>
-      <Tabs defaultValue="mental-health-first-aid" className="w-full">
-        <TabsList className="w-full overflow-x-scroll no-scrollbar justify-start">
-          {classTypes.map((classType) => (
-            <TabsTrigger key={classType.slug} value={classType.slug}>
-              {classType.type}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        <p className="text-foreground/80 text-sm mb-4">
-          Scroll to see more options
+interface ClassTypesShowcaseSectionProps {
+  classTypes: ClassType[];
+}
+
+export default function ClassTypesShowcaseSection({
+  classTypes,
+}: ClassTypesShowcaseSectionProps) {
+  const fallbackMessage = (
+    <Card className="text-center">
+      <CardHeader>
+        <CardTitle>No Class Type Information Available</CardTitle>
+        <CardDescription>
+          Please check back later for more information on our class offerings.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-lg">
+          We will be offering certification classes for armed security and
+          unarmed security and we will be updating our class types soon. In the
+          meantime, feel free to reach out to us with any questions regarding
+          our business or future class offerings.
         </p>
-        {classTypes.map((classType) => (
-          <TabsContent key={classType.slug} value={classType.slug}>
-            <Card className="text-center md:space-y-4">
-              <CardHeader className="md:space-y-2">
-                <CardTitle>{classType.type}</CardTitle>
-                {classType.description && (
-                  <CardDescription>{classType.description}</CardDescription>
-                )}
-              </CardHeader>
-              <CardContent className="px-12">
-                <p className="text-lg">{classType.information}</p>
-              </CardContent>
-              <CardFooter className="justify-center">
-                <Button size={"lg"}>Sign Up</Button>
-              </CardFooter>
-            </Card>
-          </TabsContent>
-        ))}
-      </Tabs>
+      </CardContent>
+      <CardFooter>
+        <RequestInfoButton>Contact Us</RequestInfoButton>
+      </CardFooter>
+    </Card>
+  );
+
+  return (
+    <section className="container flex mx-auto w-full max-w-5xl flex-col gap-4 items-center px-2 md:px-0">
+      <h2 className="text-2xl font-bold my-4 self-start">Class Types</h2>
+      {classTypes.length ? (
+        <Tabs defaultValue={classTypes[0]?.slug} className="w-full">
+          <TabsList className="w-full overflow-x-scroll no-scrollbar justify-start">
+            {classTypes.map((classType) => (
+              <TabsTrigger key={classType.slug} value={classType.slug}>
+                {classType.name}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          <p className="text-foreground/80 text-sm mb-4">
+            Scroll to see more options
+          </p>
+          {classTypes.map((classType) => (
+            <TabsContent key={classType.slug} value={classType.slug}>
+              <Card className="text-center md:space-y-4">
+                <CardHeader className="md:space-y-2">
+                  <CardTitle>{classType.name}</CardTitle>
+                  {classType.subtitle && (
+                    <CardDescription>{classType.subtitle}</CardDescription>
+                  )}
+                </CardHeader>
+                <CardContent className="px-12">
+                  <p className="text-lg">{classType.description}</p>
+                </CardContent>
+                <CardFooter className="justify-center">
+                  <Button size={"lg"} asChild>
+                    <Link href={`/sign-up`}>Sign Up</Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            </TabsContent>
+          ))}
+        </Tabs>
+      ) : (
+        fallbackMessage
+      )}
     </section>
   );
 }
