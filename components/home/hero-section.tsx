@@ -18,7 +18,7 @@ const HeroSection = () => {
       </h2>
       <div className="flex flex-col md:flex-row items-center justify-center gap-4">
         <Button className="w-full md:w-auto" asChild>
-          <Link href="/signup">Sign Up for Classes</Link>
+          <Link href="/sign-up">Sign Up for Classes</Link>
         </Button>
         <RequestInfoButton>Request More Information</RequestInfoButton>
       </div>
