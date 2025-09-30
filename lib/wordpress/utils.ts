@@ -77,11 +77,15 @@ export const reshapeMenu = (menu: MenuResponse): Menu | null => {
 
 export const reshapeClass = (cls: WordPressClass): ClassData => {
   const classTypeData = removeEdgesAndNodes(cls.classTypes)[0];
+  const endDate = cls.classInformation.endDateTime
+    ? new Date(cls.classInformation.endDateTime)
+    : null;
 
   return {
     id: cls.databaseId,
     description: cls.classInformation.description,
     date: new Date(cls.classInformation.classDateTime),
+    endDate,
     isRemote: cls.classInformation.isRemote,
     location: cls.classInformation.classLocation,
     spotsTaken: cls.classData.spotsTaken ?? 0,

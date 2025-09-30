@@ -106,6 +106,7 @@ export const AllActiveClassesQuery = /* GraphQL */ `
             description
             isRemote
             classDateTime
+            endDateTime
           }
           classTypes {
             edges {
@@ -137,6 +138,7 @@ export const singleClassQuery = /* GraphQL */ `
         description
         isRemote
         classDateTime
+        endDateTime
       }
       classTypes {
         edges {
@@ -194,6 +196,7 @@ export const getAttendeeQuery = /* GraphQL */ `
             }
             classInformation {
               classDateTime
+              endDateTime
               classLocation
               isRemote
               description

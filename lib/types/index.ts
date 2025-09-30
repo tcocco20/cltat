@@ -32,6 +32,7 @@ export interface ClassData {
   id: number;
   description: string;
   date: Date;
+  endDate: Date | null;
   isRemote: boolean;
   location: string | null;
   spotsTaken: number;

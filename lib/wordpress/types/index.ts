@@ -42,6 +42,7 @@ interface WordPressClassInformation {
   description: string;
   isRemote: boolean;
   classDateTime: string;
+  endDateTime: string | null;
 }
 
 interface WordPressClassData {
