@@ -40,6 +40,7 @@ export interface ClassData {
   type: string;
   typeSlug: string;
   cost: number;
+  isPaid: boolean;
 }
 
 export interface ClassType {

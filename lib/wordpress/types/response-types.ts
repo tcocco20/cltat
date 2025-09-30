@@ -39,6 +39,7 @@ export type SimpleClassApiResponse = {
         node: {
           paymentInformation: {
             cost: number;
+            isPaid: boolean;
           };
         };
       }

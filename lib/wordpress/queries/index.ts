@@ -113,6 +113,7 @@ export const AllActiveClassesQuery = /* GraphQL */ `
               node {
                 paymentInformation {
                   cost
+                  isPaid
                 }
                 name
                 slug
@@ -145,6 +146,7 @@ export const singleClassQuery = /* GraphQL */ `
           node {
             paymentInformation {
               cost
+              isPaid
             }
             name
             slug
@@ -171,6 +173,7 @@ export const singleClassApiQuery = /* GraphQL */ `
           node {
             paymentInformation {
               cost
+              isPaid
             }
           }
         }
@@ -207,6 +210,7 @@ export const getAttendeeQuery = /* GraphQL */ `
                   name
                   paymentInformation {
                     cost
+                    isPaid
                   }
                 }
               }

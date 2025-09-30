@@ -87,6 +87,7 @@ export const reshapeClass = (cls: WordPressClass): ClassData => {
     date: new Date(cls.classInformation.classDateTime),
     endDate,
     isRemote: cls.classInformation.isRemote,
+    isPaid: classTypeData.paymentInformation.isPaid,
     location: cls.classInformation.classLocation,
     spotsTaken: cls.classData.spotsTaken ?? 0,
     totalSpots: cls.classData.totalSpots,

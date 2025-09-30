@@ -35,6 +35,7 @@ export interface WordPressClassType {
 }
 interface WordPressPaymentInformation {
   cost: number;
+  isPaid: boolean;
 }
 
 interface WordPressClassInformation {
