@@ -1,5 +1,6 @@
 "use client";
 
+import { SQUARE_SDK_URL } from "@/lib/constants";
 import Script from "next/script";
 
 export default function SquareWrapper({
@@ -9,10 +10,7 @@ export default function SquareWrapper({
 }) {
   return (
     <>
-      <Script
-        src="https://sandbox.web.squarecdn.com/v1/square.js"
-        strategy="afterInteractive"
-      />
+      <Script src={SQUARE_SDK_URL} strategy="afterInteractive" />
       {children}
     </>
   );

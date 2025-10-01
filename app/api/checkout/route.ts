@@ -44,7 +44,8 @@ export async function POST(req: NextRequest) {
     if (classData.spotsTaken >= classData.totalSpots) {
       return NextResponse.json({ error: "Class is full" }, { status: 400 });
     }
-    const classCost = classData.cost * 100;
+    // commenting out for testing purposes
+    // const classCost = classData.cost * 100;
 
     // 2) (Optional) attach or create a Square customer record.
     // For speed, we'll skip creation and just attach contact info to the payment.
@@ -64,7 +65,7 @@ export async function POST(req: NextRequest) {
             name: "Test Class", // Replace with class title or generate one
             quantity: "1",
             basePriceMoney: {
-              amount: BigInt(classCost),
+              amount: BigInt(100),
               currency: "USD",
             },
           },
@@ -88,17 +89,17 @@ export async function POST(req: NextRequest) {
       idempotencyKey: paymentIdempotencyKey,
       sourceId: sourceId,
       amountMoney: {
-        amount: BigInt(classCost),
+        amount: BigInt(100),
         currency: "USD",
       },
       locationId: SQUARE_LOCATION_ID,
       orderId: order.id,
       autocomplete: true, // capture now
       referenceId: classId.toString(),
-      // appFeeMoney: {
-      //   amount: BigInt(100), // use to add $1.00 fee to checkout
-      //   currency: "USD",
-      // },
+      appFeeMoney: {
+        amount: BigInt(1), // use to add $1.00 fee to checkout
+        currency: "USD",
+      },
       // note: `Class signup: ${title}`, -- maybe test in prod to see what this would look like.
       verificationToken: verificationToken, // include if you run verifyBuyer on the client
     });
