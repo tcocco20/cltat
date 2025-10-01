@@ -13,7 +13,7 @@ const InstructorInfoSection = ({
   licenses,
 }: InstructorInfoSectionProps) => {
   return (
-    <section className="container max-w-5xl mx-auto px-2 md:px-0">
+    <section className="container mx-auto px-2 md:px-0">
       <h2 className="text-2xl font-bold my-4">
         Instructor and Licensing Information
       </h2>

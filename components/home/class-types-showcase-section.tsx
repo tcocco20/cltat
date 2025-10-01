@@ -43,11 +43,11 @@ export default function ClassTypesShowcaseSection({
   );
 
   return (
-    <section className="container flex mx-auto w-full max-w-5xl flex-col gap-4 items-center px-2 md:px-0">
+    <section className="container flex mx-auto w-full flex-col gap-4 items-center px-2 md:px-0">
       <h2 className="text-2xl font-bold my-4 self-start">Class Types</h2>
       {classTypes.length ? (
         <Tabs defaultValue={classTypes[0]?.slug} className="w-full">
-          <TabsList className="w-full overflow-x-scroll no-scrollbar justify-start">
+          <TabsList className="max-w-full overflow-x-scroll no-scrollbar justify-start">
             {classTypes.map((classType) => (
               <TabsTrigger key={classType.slug} value={classType.slug}>
                 {classType.name}
@@ -59,7 +59,7 @@ export default function ClassTypesShowcaseSection({
           </p>
           {classTypes.map((classType) => (
             <TabsContent key={classType.slug} value={classType.slug}>
-              <Card className="text-center md:space-y-4">
+              <Card className="text-center md:space-y-4 max-w-3xl">
                 <CardHeader className="md:space-y-2">
                   <CardTitle>{classType.name}</CardTitle>
                   {classType.subtitle && (

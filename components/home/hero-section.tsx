@@ -6,7 +6,7 @@ import RequestInfoButton from "../general/request-info-button";
 const HeroSection = () => {
   return (
     <section className="w-full min-h-80 sm:min-h-[60vh] md:min-h-[75vh] lg:min-h-screen flex flex-col justify-center items-center gap-4 bg-[url('/images/hero-image.png')] bg-cover bg-center px-4 sm:px-0">
-      <div className="bg-image-background/50 rounded text-center tracking-wider uppercase">
+      <div className="bg-image-background/50 rounded text-center tracking-wide md:tracking-wider uppercase">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold [font-family:var(--font-branding)]">
           <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
             C
@@ -21,7 +21,7 @@ const HeroSection = () => {
           Training and Advisory Team LLC
         </h2>
       </div>
-      <p>
+      <p className="text-xs sm:text-sm md:text-base text-center max-w-2xl bg-image-background/50 rounded">
         We offer training and certification for security professionals in the
         state of Oregon.
       </p>
