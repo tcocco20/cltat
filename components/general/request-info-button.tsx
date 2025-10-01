@@ -26,7 +26,9 @@ const RequestInfoButton = ({ children }: RequestInfoButtonProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">{children}</Button>
+        <Button variant="outline" className="cursor-pointer">
+          {children}
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

@@ -41,7 +41,9 @@ const Header = () => {
         scrollPosition === 0 ? "bg-foreground/85" : ""
       )}
     >
-      <h1 className="text-xl md:text-2xl font-bold">Cornerstone Legacy</h1>
+      <h1 className="text-2xl md:text-3xl font-bold [font-family:var(--font-branding)]">
+        Cornerstone Legacy
+      </h1>
       <NavigationMenu className="hidden md:flex">
         <NavigationMenuList>
           {menuItems.map((item) => (
