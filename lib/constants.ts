@@ -1,4 +1,5 @@
-export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+export const APP_URL =
+  process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 export const WP_GRAPHQL_URL =
   process.env.WP_GRAPHQL_URL || "http://localhost:8000/graphql";
 export const WP_APP_URL = process.env.WP_APP_URL || "http://localhost:8000/";
@@ -10,3 +11,6 @@ export const SQUARE_LOCATION_ID =
 export const WP_USERNAME = process.env.WP_USERNAME || "";
 export const WP_APP_PASSWORD = process.env.WP_APP_PASSWORD || "";
 export const WP_API_URL = process.env.WP_API_URL || "";
+export const SQUARE_SDK_URL =
+  process.env.NEXT_PUBLIC_SQUARE_SDK_URL ||
+  "https://sandbox.web.squarecdn.com/v1/square.js";
