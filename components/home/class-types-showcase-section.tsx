@@ -43,7 +43,7 @@ export default function ClassTypesShowcaseSection({
   );
 
   return (
-    <section className="container flex mx-auto w-full flex-col gap-4 items-center px-2 md:px-0">
+    <section className="container flex mx-auto w-full flex-col gap-4 items-center px-2">
       <h2 className="text-2xl font-bold my-4 self-start">Class Types</h2>
       {classTypes.length ? (
         <Tabs defaultValue={classTypes[0]?.slug} className="w-full">
@@ -54,19 +54,25 @@ export default function ClassTypesShowcaseSection({
               </TabsTrigger>
             ))}
           </TabsList>
-          <p className="text-foreground/80 text-sm mb-4">
-            Scroll to see more options
-          </p>
+          {classTypes.length > 1 && (
+            <p className="text-foreground/80 text-sm mb-4">
+              Scroll to see more options
+            </p>
+          )}
           {classTypes.map((classType) => (
-            <TabsContent key={classType.slug} value={classType.slug}>
-              <Card className="text-center md:space-y-4 max-w-3xl">
+            <TabsContent
+              key={classType.slug}
+              value={classType.slug}
+              className="space-x-2"
+            >
+              <Card className="text-center md:space-y-4 max-w-2xl lg:w-1/2">
                 <CardHeader className="md:space-y-2">
                   <CardTitle>{classType.name}</CardTitle>
                   {classType.subtitle && (
                     <CardDescription>{classType.subtitle}</CardDescription>
                   )}
                 </CardHeader>
-                <CardContent className="px-12">
+                <CardContent className="overflow-y-auto max-h-96">
                   <p className="text-lg">{classType.description}</p>
                 </CardContent>
                 <CardFooter className="justify-center">
