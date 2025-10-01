@@ -24,7 +24,7 @@ const ShowLicenseButton = ({ licenses }: ShowLicenseButtonProps) => {
               <File height={48} width={48} />
             </div>
           </DialogTrigger>
-          <h3 className="text-center text-xl font-semibold whitespace-nowrap">
+          <h3 className="text-center text-xl font-semibold whitespace-nowrap my-4">
             View Licenses
           </h3>
         </div>

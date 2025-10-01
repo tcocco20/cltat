@@ -23,7 +23,7 @@ const InstructorCard = ({ instructor }: InstructorCardProps) => {
             <User height={48} width={48} />
           </div>
         )}
-        <h3 className="text-center text-xl font-semibold whitespace-nowrap">
+        <h3 className="text-center text-xl font-semibold whitespace-nowrap my-4">
           {instructor.name}
         </h3>
       </div>
