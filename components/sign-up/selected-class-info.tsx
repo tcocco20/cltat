@@ -79,6 +79,7 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
                 selectedClass.totalSpots - selectedClass.spotsTaken === 0
               }
               classId={selectedClass.id}
+              isPaid={selectedClass.isPaid}
               cost={selectedClass.cost}
             />
           </div>

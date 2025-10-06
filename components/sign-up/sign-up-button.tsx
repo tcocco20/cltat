@@ -9,14 +9,13 @@ import {
 } from "@/components/ui/dialog";
 import SignUpSteps from "./sign-up-steps";
 import { useState } from "react";
-import CustomerInformationForm from "./customer-information-form";
-import CustomerIdentificationForm from "./customer-identification-form";
-import PaymentForm from "./payment-form";
-import SquareWrapper from "./square-wrapper";
+import PaidClassForm from "./paid-class-form";
+import FreeClassForm from "./free-class-form";
 
 interface SignUpButtonProps {
   classId: number;
   cost: number;
+  isPaid: boolean;
   isDisabled: boolean;
 }
 
@@ -24,6 +23,7 @@ export default function SignUpButton({
   classId,
   cost,
   isDisabled,
+  isPaid,
 }: SignUpButtonProps) {
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -45,21 +45,16 @@ export default function SignUpButton({
           </DialogTitle>
           <SignUpSteps currentStep={currentStep} />
         </DialogHeader>
-        <SquareWrapper>
-          {currentStep === 1 && (
-            <CustomerInformationForm onChangeStep={handleChangeStep} />
-          )}
-          {currentStep === 2 && (
-            <CustomerIdentificationForm onChangeStep={handleChangeStep} />
-          )}
-          {currentStep === 3 && (
-            <PaymentForm
-              cost={cost}
-              classId={classId}
-              onChangeStep={handleChangeStep}
-            />
-          )}
-        </SquareWrapper>
+        {isPaid ? (
+          <PaidClassForm
+            classId={classId}
+            cost={cost}
+            currentStep={currentStep}
+            handleChangeStep={handleChangeStep}
+          />
+        ) : (
+          <FreeClassForm />
+        )}
       </DialogContent>
     </Dialog>
   );

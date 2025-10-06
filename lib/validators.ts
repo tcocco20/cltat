@@ -35,3 +35,8 @@ export const userIdentificationSchema = z
     message: "Source URL is required",
     path: ["photoId"],
   });
+
+export const freeClassSignUpSchema = z.object({
+  ...userDetailsSchema.shape,
+  dateOfBirth: userIdentificationSchema.shape.dateOfBirth,
+});

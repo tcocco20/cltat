@@ -1,5 +1,9 @@
 import z from "zod";
-import { userDetailsSchema, userIdentificationSchema } from "../validators";
+import {
+  freeClassSignUpSchema,
+  userDetailsSchema,
+  userIdentificationSchema,
+} from "../validators";
 
 export interface PageData {
   blocks: BlockData[];
@@ -66,6 +70,7 @@ export type CustomerInfo = z.infer<typeof userDetailsSchema>;
 export type CustomerIdentification = z.infer<typeof userIdentificationSchema>;
 
 export type CustomerDetails = CustomerInfo & CustomerIdentification;
+export type FreeCustomerDetails = z.infer<typeof freeClassSignUpSchema>;
 
 export interface AttendeeData {
   id: number;
