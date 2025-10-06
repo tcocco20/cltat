@@ -32,6 +32,9 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
             <p className="text-red-500">
               {selectedClass.date.toDateString()}{" "}
               {selectedClass.date.toLocaleTimeString()}
+              {selectedClass.endDate
+                ? ` - ${selectedClass.endDate.toDateString()} ${selectedClass.endDate.toLocaleTimeString()}`
+                : ""}
             </p>
             <p className="font-semibold lg:text-lg">
               Price per spot: {formatPrice(selectedClass.cost)}
@@ -59,8 +62,11 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
                 <>
                   <p className="font-semibold">Location:</p>
                   <Link
-                    href="#"
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                      selectedClass.location
+                    )}`}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="text-blue-500 font-semibold hover:underline"
                   >
                     {selectedClass.location}

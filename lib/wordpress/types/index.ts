@@ -39,7 +39,7 @@ interface WordPressPaymentInformation {
 }
 
 interface WordPressClassInformation {
-  classLocation: null | string;
+  classLocation: string;
   description: string;
   isRemote: boolean;
   classDateTime: string;

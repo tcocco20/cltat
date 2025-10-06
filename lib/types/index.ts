@@ -34,7 +34,7 @@ export interface ClassData {
   date: Date;
   endDate: Date | null;
   isRemote: boolean;
-  location: string | null;
+  location: string;
   spotsTaken: number;
   totalSpots: number;
   type: string;
