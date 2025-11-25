@@ -1,4 +1,4 @@
-import * as styles from "./wysiwyg-renderer.module.css";
+import styles from "./wysiwyg-renderer.module.css";
 interface WysiwygRendererProps {
   htmlToRender: string;
   className?: string;
@@ -7,7 +7,7 @@ interface WysiwygRendererProps {
 const WysiwygRenderer = ({ htmlToRender, className }: WysiwygRendererProps) => {
   return (
     <div
-      className={`${styles.default.wysiwygContainer} ${className || ""}`}
+      className={`${styles.wysiwygContainer} ${className || ""}`}
       dangerouslySetInnerHTML={{ __html: htmlToRender }}
     />
   );
