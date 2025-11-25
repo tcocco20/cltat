@@ -36,9 +36,14 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
                 ? ` - ${selectedClass.endDate.toDateString()} ${selectedClass.endDate.toLocaleTimeString()}`
                 : ""}
             </p>
-            <p className="font-semibold lg:text-lg">
-              Price per spot: {formatPrice(selectedClass.cost)}
-            </p>
+            {
+              <p className="font-semibold lg:text-lg">
+                Price per spot:{" "}
+                {selectedClass.isPaid
+                  ? formatPrice(selectedClass.cost)
+                  : "Free"}
+              </p>
+            }
             <p>
               Spots remaining:{" "}
               <span className="font-semibold">

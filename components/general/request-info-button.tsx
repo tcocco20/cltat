@@ -40,13 +40,13 @@ const RequestInfoButton = ({ children }: RequestInfoButtonProps) => {
         </DialogHeader>
         <div className="flex flex-col md:flex-row items-center gap-4">
           <Link
-            href="mailto:cltraining.or@gmail.com"
+            href="mailto:info@cornerstone-legacy.com"
             className="flex-1 hover:scale-105 transition-transform duration-200"
           >
             <Card className="text-center">
               <CardHeader>
                 <CardTitle>Email Us</CardTitle>
-                <CardDescription>cltraining.or@gmail.com</CardDescription>
+                <CardDescription>info@cornerstone-legacy.com</CardDescription>
               </CardHeader>
               <CardContent className="flex justify-center">
                 <Mail className="h-12 w-12" />

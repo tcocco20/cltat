@@ -73,11 +73,16 @@ export default function ClassTypesShowcaseSection({
                   )}
                 </CardHeader>
                 <CardContent className="overflow-y-auto max-h-96">
-                  <p className="text-lg">{classType.description}</p>
+                  <div
+                    className="text-lg"
+                    dangerouslySetInnerHTML={{ __html: classType.description }}
+                  />
                 </CardContent>
                 <CardFooter className="justify-center">
                   <Button size={"lg"} asChild>
-                    <Link href={`/sign-up`}>Sign Up</Link>
+                    <Link href={`/sign-up?classType=${classType.slug}`}>
+                      Sign Up
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>

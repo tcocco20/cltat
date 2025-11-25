@@ -27,7 +27,10 @@ const InstructorCard = ({ instructor }: InstructorCardProps) => {
           {instructor.name}
         </h3>
       </div>
-      <p className="text-center">{instructor.bio}</p>
+      <div
+        className="text-center"
+        dangerouslySetInnerHTML={{ __html: instructor.bio.slice(0, 100) }}
+      />
     </div>
   );
 };
