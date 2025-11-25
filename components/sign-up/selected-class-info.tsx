@@ -4,6 +4,7 @@ import { ClassData } from "@/lib/types";
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils";
 import SignUpButton from "./sign-up-button";
+import WysiwygRenderer from "../general/wysiwyg-renderer";
 
 interface SelectedClassInfoProps {
   selectedClass: ClassData | null;
@@ -51,7 +52,11 @@ const SelectedClassInfo = ({ selectedClass }: SelectedClassInfoProps) => {
               </span>
             </p>
             <p>Total Spots: {selectedClass.totalSpots}</p>
-            <p className="text-muted-foreground">{selectedClass.description}</p>
+            <p className="font-semibold">Description:</p>
+            <WysiwygRenderer
+              htmlToRender={selectedClass.description}
+              className="text-muted-foreground space-y-2 max-h-72 overflow-y-auto"
+            />
             <p>
               Location Type:{" "}
               <span className="font-semibold">

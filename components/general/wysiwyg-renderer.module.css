@@ -1,0 +1,51 @@
+.wysiwygContainer > h1 {
+  font-size: 4rem;
+  font-weight: 500;
+}
+.wysiwygContainer > h2 {
+  font-size: 3.25rem;
+  font-weight: 500;
+}
+.wysiwygContainer > h3 {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.wysiwygContainer > h4 {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+.wysiwygContainer > h5 {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.wysiwygContainer > h6 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.wysiwygContainer > ol,
+.wysiwygContainer > ul {
+  padding: 0 1rem;
+}
+
+.wysiwygContainer > ol {
+  list-style-type: decimal;
+}
+
+.wysiwygContainer > ul {
+  list-style-type: "- ";
+}
+
+.wysiwygContainer > blockquote {
+  margin-left: 2rem;
+}
+
+.wysiwygContainer > p > a {
+  color: var(--color-blue-500);
+}
+
+.wysiwygContainer > p > a:hover {
+  color: var(--color-blue-700);
+  text-decoration: underline;
+  transition: all 0.8s ease-in;
+}

@@ -47,7 +47,7 @@ export default function ClassTypesShowcaseSection({
       <h2 className="text-2xl font-bold my-4 self-start">Class Types</h2>
       {classTypes.length ? (
         <Tabs defaultValue={classTypes[0]?.slug} className="w-full">
-          <TabsList className="max-w-full overflow-x-scroll no-scrollbar justify-start">
+          <TabsList className="max-w-2xl overflow-x-scroll no-scrollbar justify-start">
             {classTypes.map((classType) => (
               <TabsTrigger key={classType.slug} value={classType.slug}>
                 {classType.name}
