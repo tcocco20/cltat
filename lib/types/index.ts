@@ -19,7 +19,7 @@ export interface LinkData {
 export interface BlockData {
   id: string;
   name: string;
-  attributes: Record<string, string>;
+  attributes: Record<string, string | number | boolean>;
   innerBlocks: BlockData[];
 }
 
