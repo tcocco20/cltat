@@ -32,10 +32,7 @@ const BlockRenderer = ({ blocks }: BlockRendererProps) => {
                     : "auto",
                 }}
                 className={getImageClassesFromAttributes(block.attributes)}
-                src={(block.attributes.url as string).replace(
-                  "https:",
-                  "http:",
-                )}
+                src={block.attributes.url as string}
                 height={block.attributes.height as number}
                 width={block.attributes.width as number}
                 alt={(block.attributes.alt as string) || ""}
