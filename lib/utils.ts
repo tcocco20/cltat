@@ -49,10 +49,6 @@ export function getImageClassesFromAttributes(
   } else {
     classes.push("object-contain");
   }
-  if (attributes.aspectRatio) {
-    const aspectRatio = attributes.aspectRatio as string;
-    classes.push(`aspect-${aspectRatio}`);
-  }
   return classes.join(" ");
 }
 

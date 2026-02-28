@@ -4,7 +4,7 @@ import { PageResponse } from "./response-types";
 
 export type WordPressBlock = {
   name: string;
-  attributes: Record<string, string>;
+  attributes: Record<string, string | number | boolean>;
   innerBlocks?: WordPressBlock[];
 };
 
