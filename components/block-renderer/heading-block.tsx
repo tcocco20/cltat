@@ -6,14 +6,19 @@ interface HeadingBlockProps {
 }
 
 const HeadingBlock = ({ block }: HeadingBlockProps) => {
+  const rawLevel = Number(block.attributes.level);
+  const safeLevel =
+    Number.isFinite(rawLevel) && rawLevel >= 1 && rawLevel <= 6 ? rawLevel : 2;
+  const HeadingTag = (`h${safeLevel}` as keyof JSX.IntrinsicElements);
+
   return (
-    <h2
+    <HeadingTag
       className={`my-5 ${getFontSizeForHeading(
         block.attributes.level as number,
       )} font-semibold`}
     >
       {block.attributes.content}
-    </h2>
+    </HeadingTag>
   );
 };
 
